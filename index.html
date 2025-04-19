@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sushant Medico - Your trusted pharmacy in Birgunj for quality medicines, healthcare products, and doctor consultations">
+    <title>Sushant Medico - Your Trusted Medical Store in Birgunj</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --danger-color: #e74c3c;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+            --border-radius: 10px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Accessibility Improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Skip to Content Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--dark-color);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 10px 0;
+            font-size: 14px;
+            text-align: center;
+            position: relative;
+            z-index: 101;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s;
+        }
+        
+        header.scrolled {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            text-decoration: none;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .nav-links a:hover, 
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--danger-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+        
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+            padding: 5px;
+            transition: var(--transition);
+        }
+        
+        .mobile-menu:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background-color: var(--light-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background-color: var(--primary-color);
+            opacity: 0.1;
+            border-radius: 30% 0 0 30%;
+            z-index: 0;
+        }
+        
+        .two-column {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+            line-height: 1.3;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        .hero-image {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .hero-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(0,0,0,0.15);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #27ae60;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--dark-color);
+            font-size: 2.2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        /* Cards */
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .category-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .card:hover .category-image {
+            transform: scale(1.05);
+        }
+        
+        .card-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--dark-color);
+        }
+        
+        .card-text {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-2 {
+            margin-bottom: 20px;
+        }
+        
+        /* Why Choose Us */
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            color: var(--secondary-color);
+        }
+        
+        /* Doctor Appointment */
+        .bg-light {
+            background-color: var(--light-color);
+            position: relative;
+        }
+        
+        .bg-light::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40%;
+            height: 100%;
+            background-color: var(--secondary-color);
+            opacity: 0.1;
+            border-radius: 0 30% 30% 0;
+            z-index: 0;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin: 25px 0;
+        }
+        
+        .feature-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-list i {
+            color: var(--secondary-color);
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+        
+        /* Form Styles */
+        .appointment-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        
+        input:focus, 
+        select:focus, 
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--dark-color);
+            color: white;
+        }
+        
+        .testimonial-card {
+            background-color: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '\201C';
+            font-size: 5rem;
+            color: rgba(255,255,255,0.1);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+            color: white;
+        }
+        
+        .author-info p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .newsletter-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .newsletter-input {
+            flex-grow: 1;
+            padding: 15px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .footer-section p {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-section ul li a:hover {
+            opacity: 1;
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .contact-info p {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .contact-info i {
+            margin-right: 12px;
+            width: 20px;
+            color: var(--primary-color);
+            margin-top: 3px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .social-links a:hover {
+            opacity: 1;
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .payment-methods {
+            margin-top: 20px;
+        }
+        
+        .payment-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .payment-icons i {
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+        
+        .payment-icons i:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        .footer-bottom a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--primary-color);
+        }
+        
+        .developer-credit {
+            margin-top: 10px;
+            font-size: 0.8rem;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Mobile Cart */
+        .mobile-cart {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            z-index: 99;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .mobile-cart:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+        
+        /* Loading Animation */
+        .loader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255,255,255,0.9);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .loader.active {
+            display: flex;
+        }
+        
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--dark-color);
+            color: white;
+            padding: 15px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .toast.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .toast.success {
+            background-color: var(--secondary-color);
+        }
+        
+        .toast.error {
+            background-color: var(--danger-color);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .section {
+                padding: 60px 0;
+            }
+            
+            .hero::before,
+            .bg-light::before {
+                width: 60%;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 40px 0;
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .two-column {
+                flex-direction: column;
+            }
+            
+            .column:first-child {
+                order: 2;
+                text-align: center;
+            }
+            
+            .column:last-child {
+                order: 1;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero::before,
+            .bg-light::before {
+                display: none;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .footer-section {
+                text-align: center;
+            }
+            
+            .footer-section h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .contact-info p {
+                justify-content: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .appointment-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to Content Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Loading Animation -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Notification message</span>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <p>Free delivery on orders above Rs 100 in Birgunj | Open 7 days a week: 7AM - 9PM</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-clinic-medical" aria-hidden="true"></i>
+                <span>Sushant Medico</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="products.html"><i class="fas fa-pills"></i> Products</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li class="cart-icon">
+                    <a href="cart.html" aria-label="Shopping Cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+            <button class="mobile-menu" id="mobileMenu" aria-expanded="false" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero section">
+            <div class="container two-column">
+                <div class="column">
+                    <h1>Your Health, Our Priority in Birgunj</h1>
+                    <p class="mb-2">Get all your medical needs delivered quickly to your doorstep. Quality medicines, healthcare products, and doctor consultations - all in one trusted place.</p>
+                    <div class="hero-buttons">
+                        <a href="products.html" class="btn">Shop Medicines</a>
+                        <a href="#doctor-appointment" class="btn btn-outline">Book Doctor</a>
+                    </div>
+                </div>
+                <div class="column">
+                    <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sushant Medico store front with medicines on display" class="hero-image" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Categories -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Popular Categories</h2>
+                <div class="grid">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Various medicines on display" class="category-image" loading="lazy">
+                        <div class="card-body">
+                            <h3 class="card-title">Medicines</h3>
+                            <p class="card-text">Prescription and over-the-counter medicines for all your healthcare needs.</p>
+                            <a href="products.html?category=medicines" class="btn">Browse Medicines</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Healthcare products including vitamins and supplements" class="category-image" loading="lazy">
+                        <div class="card-body">
+                            <h3 class="card-title">Healthcare</h3>
+                            <p class="card-text">Personal care, wellness products, and supplements for a healthier life.</p>
+                            <a href="products.html?category=healthcare" class="btn">Browse Products</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Medical equipment and supplies" class="category-image" loading="lazy">
+                        <div class="card-body">
+                            <h3 class="card-title">Medical Supplies</h3>
+                            <p class="card-text">Essential medical equipment and supplies for home and professional use.</p>
+                            <a href="products.html?category=supplies" class="btn">Browse Supplies</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1584473457406-6240486418e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Baby care products including diapers and lotions" class="category-image" loading="lazy">
+                        <div class="card-body">
+                            <h3 class="card-title">Baby Care</h3>
+                            <p class="card-text">Gentle and safe products for your baby's health and hygiene needs.</p>
+                            <a href="products.html?category=babycare" class="btn">Browse Baby Care</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Why Choose Sushant Medico</h2>
+                <div class="grid">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-truck-fast feature-icon" aria-hidden="true"></i>
+                            <h3 class="card-title">Fast Delivery</h3>
+                            <p class="card-text">Quick delivery within Birgunj, often within 2 hours</p>
+                        </div>
+                    </div>
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-certificate feature-icon" aria-hidden="true"></i>
+                            <h3 class="card-title">Genuine Products</h3>
+                            <p class="card-text">100% authentic medicines with proper storage</p>
+                        </div>
+                    </div>
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-headset feature-icon" aria-hidden="true"></i>
+                            <h3 class="card-title">24/7 Support</h3>
+                            <p class="card-text">Emergency support available round the clock</p>
+                        </div>
+                    </div>
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-user-doctor feature-icon" aria-hidden="true"></i>
+                            <h3 class="card-title">Doctor Consultation</h3>
+                            <p class="card-text">Book appointments with trusted doctors</p>
+                            <a href="#doctor-appointment" class="btn btn-secondary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section testimonials">
+            <div class="container">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <div class="grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Sushant Medico has been my go-to pharmacy for years. Their delivery is always prompt and their staff is knowledgeable about medicines.</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ramesh Kumar" class="author-avatar" loading="lazy">
+                            <div class="author-info">
+                                <h4>Ramesh Kumar</h4>
+                                <p>Regular Customer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">I appreciate their genuine medicines and professional service. They helped me find alternatives when my regular medicine was out of stock.</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sunita Sharma" class="author-avatar" loading="lazy">
+                            <div class="author-info">
+                                <h4>Sunita Sharma</h4>
+                                <p>Senior Citizen</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Their doctor consultation service saved us during lockdown when we couldn't visit hospitals. The doctor was very patient and helpful.</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Amit Patel" class="author-avatar" loading="lazy">
+                            <div class="author-info">
+                                <h4>Amit Patel</h4>
+                                <p>Local Business Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Doctor Appointment Section -->
+        <section id="doctor-appointment" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title">Book a Doctor Appointment</h2>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Consult with Our Trusted Doctors</h3>
+                        <p>We partner with qualified medical professionals to provide you with the best healthcare services. Book an appointment for in-person or online consultation.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check-circle"></i> Experienced specialists across various fields</li>
+                            <li><i class="fas fa-check-circle"></i> Flexible timings including evenings</li>
+                            <li><i class="fas fa-check-circle"></i> Secure online video consultations</li>
+                            <li><i class="fas fa-check-circle"></i> Personalized follow-up care</li>
+                            <li><i class="fas fa-check-circle"></i> Prescription delivery service</li>
+                        </ul>
+                        <div class="doctor-availability">
+                            <h4>Available Doctors:</h4>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-user-md"></i> <strong>Dr. Anil Sharma</strong> - General Physician (Mon-Sat, 9AM-5PM)</li>
+                                <li><i class="fas fa-user-md"></i> <strong>Dr. Sameer Khan</strong> - Pediatrician (Tue, Thu, Sat 10AM-3PM)</li>
+                                <li><i class="fas fa-user-md"></i> <strong>Dr. Priya Gurung</strong> - Gynecologist (Mon, Wed, Fri 11AM-4PM)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <form class="appointment-form" id="appointmentForm">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="doctor">Preferred Doctor</label>
+                                    <select id="doctor" name="doctor">
+                                        <option value="">Any Available Doctor</option>
+                                        <option value="dr-sharma">Dr. Anil Sharma (General Physician)</option>
+                                        <option value="dr-khan">Dr. Sameer Khan (Pediatrician)</option>
+                                        <option value="dr-gurung">Dr. Priya Gurung (Gynecologist)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date">Preferred Date *</label>
+                                    <input type="date" id="date" name="date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="time">Preferred Time *</label>
+                                    <input type="time" id="time" name="time" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="notes">Additional Notes</label>
+                                    <textarea id="notes" name="notes" placeholder="Any special requirements or symptoms"></textarea>
+                                </div>
+                                <button type="submit" class="btn">Book Appointment</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <!-- Newsletter Section -->
+            <section class="newsletter">
+                <div class="container">
+                    <h2>Stay Updated with Health Tips & Offers</h2>
+                    <p>Subscribe to our newsletter for the latest health news, product updates, and exclusive discounts.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                        <button type="submit" class="btn btn-secondary">Subscribe</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="products.html">Products</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact Info</h3>
+                        <div class="contact-info">
+                            <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Birgunj, Nepal</p>
+                            <p><i class="fas fa-phone" aria-hidden="true"></i> +977 XXXXXXXXX</p>
+                            <p><i class="fas fa-envelope" aria-hidden="true"></i> info@sushantmedico.com</p>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Follow Us</h3>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Credits</h3>
+                        <p>Developed and designed by <a href="https://msr-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer">MSR</a></p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; <span id="year"></span> Sushant Medico. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+        
+        <!-- Back to Top Button -->
+        <button class="back-to-top" id="backToTop" aria-label="Back to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <!-- Mobile Cart Button -->
+        <a href="cart.html" class="mobile-cart" aria-label="Shopping Cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </a>
+        
+        <script>
+            // Mobile menu toggle
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenu.addEventListener('click', () => {
+                const isExpanded = mobileMenu.getAttribute('aria-expanded') === 'true';
+                mobileMenu.setAttribute('aria-expanded', !isExpanded);
+                navLinks.classList.toggle('active');
+                mobileMenu.innerHTML = isExpanded ? '<i class="fas fa-bars"></i>' : '<i class="fas fa-times"></i>';
+            });
+        
+            // Update copyright year
+            document.getElementById('year').textContent = new Date().getFullYear();
+        
+            // Back to top button
+            const backToTop = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('visible');
+                    document.querySelector('header').classList.add('scrolled');
+                } else {
+                    backToTop.classList.remove('visible');
+                    document.querySelector('header').classList.remove('scrolled');
+                }
+            });
+            
+           
