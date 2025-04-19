@@ -5,29 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Sushant Medico - Your trusted pharmacy in Birgunj for quality medicines, healthcare products, and doctor consultations">
     <title>Sushant Medico - Trusted Pharmacy in Birgunj</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Improved CSS Variables */
+        /* Base Styles */
         :root {
-            --primary: #3498db;
-            --primary-dark: #2980b9;
-            --secondary: #2ecc71;
-            --secondary-dark: #27ae60;
-            --dark: #2c3e50;
-            --light: #f8f9fa;
-            --gray: #95a5a6;
-            --danger: #e74c3c;
-            --warning: #f39c12;
-            --text: #333;
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --danger-color: #e74c3c;
+            --text-color: #333;
             --text-light: #7f8c8d;
-            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
             --transition: all 0.3s ease;
             --border-radius: 8px;
-            --header-height: 70px;
         }
         
-        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -37,26 +31,23 @@
         body {
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
-            color: var(--text);
-            background-color: #fff;
+            color: var(--text-color);
             overflow-x: hidden;
-            padding-top: calc(var(--header-height) + 30px);
         }
         
-        /* Improved Container */
         .container {
-            width: 100%;
+            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
         
-        /* Skip to Content for Accessibility */
+        /* Accessibility */
         .skip-link {
             position: absolute;
             top: -40px;
             left: 0;
-            background: var(--dark);
+            background: var(--dark-color);
             color: white;
             padding: 8px;
             z-index: 100;
@@ -67,32 +58,21 @@
             top: 0;
         }
         
-        /* Enhanced Header */
+        /* Header */
         .top-bar {
-            background-color: var(--dark);
+            background-color: var(--dark-color);
             color: white;
-            padding: 8px 0;
+            padding: 10px 0;
             font-size: 14px;
             text-align: center;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
         }
         
         header {
             background-color: white;
             box-shadow: var(--shadow);
-            position: fixed;
-            top: 30px;
-            width: 100%;
-            z-index: 999;
-            transition: var(--transition);
-        }
-        
-        header.scrolled {
+            position: sticky;
             top: 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            z-index: 100;
         }
         
         nav {
@@ -100,38 +80,20 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 0;
-            height: var(--header-height);
         }
         
         .logo {
             display: flex;
             align-items: center;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 600;
-            color: var(--dark);
+            color: var(--dark-color);
             text-decoration: none;
         }
         
         .logo i {
-            color: var(--primary);
             margin-right: 10px;
-            font-size: 1.5rem;
-        }
-        
-        /* Improved Mobile Navigation */
-        .mobile-menu {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--dark);
-            cursor: pointer;
-            padding: 5px;
-            transition: var(--transition);
-        }
-        
-        .mobile-menu:hover {
-            color: var(--primary);
+            color: var(--primary-color);
         }
         
         .nav-links {
@@ -140,43 +102,437 @@
         }
         
         .nav-links li {
-            margin-left: 20px;
-            position: relative;
+            margin-left: 30px;
         }
         
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: var(--dark-color);
             font-weight: 500;
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-size: 0.95rem;
-            padding: 8px 0;
+            gap: 5px;
         }
         
         .nav-links a:hover, 
-        .nav-links a:focus {
-            color: var(--primary);
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+        
+        .cart-icon {
+            position: relative;
         }
         
         .cart-count {
-            position: relative;
-            top: -8px;
-            right: -5px;
-            background-color: var(--danger);
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--danger-color);
             color: white;
             border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            display: inline-flex;
+            width: 20px;
+            height: 20px;
+            display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 11px;
+            font-size: 12px;
         }
         
-        /* Mobile Menu Styles */
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 15px auto 0;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Two Column Layout */
+        .two-column {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 120px 0;
+        }
+        
+        .hero .section-title {
+            color: white;
+        }
+        
+        .hero .lead {
+            font-size: 1.5rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-body {
+            padding: 25px;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .card-text {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #27ae60;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+        
+        /* Features */
+        .feature-card {
+            text-align: center;
+            padding: 40px 30px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--dark-color);
+            color: white;
+        }
+        
+        .testimonial-card {
+            padding: 30px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: var(--border-radius);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .testimonial-text i {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 2rem;
+            color: var(--primary-color);
+            opacity: 0.3;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid var(--primary-color);
+        }
+        
+        /* Contact Form */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+        
+        input:focus, 
+        select:focus, 
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .newsletter-form input {
+            flex-grow: 1;
+            padding: 12px;
+            border: none;
+            border-radius: var(--border-radius);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .footer-section p {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+        
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .footer-section a:hover {
+            opacity: 1;
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .social-links a:hover {
+            opacity: 1;
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+        }
+        
+        /* Mobile Menu Overlay */
         .mobile-menu-overlay {
             position: fixed;
             top: 0;
@@ -202,7 +558,7 @@
             background: none;
             border: none;
             font-size: 1.5rem;
-            color: var(--dark);
+            color: var(--dark-color);
             cursor: pointer;
             padding: 5px;
             z-index: 100;
@@ -210,10 +566,6 @@
         
         /* Mobile Nav Links */
         @media (max-width: 768px) {
-            .mobile-menu {
-                display: block;
-            }
-            
             .nav-links {
                 position: fixed;
                 top: 0;
@@ -252,455 +604,36 @@
                 transform: translateX(5px);
             }
             
-            .cart-count {
-                position: relative;
-                top: auto;
-                right: auto;
-                margin-left: 8px;
-            }
-        }
-        
-        /* Main Content */
-        main {
-            min-height: calc(100vh - 200px);
-        }
-        
-        section {
-            padding: 50px 0;
-        }
-        
-        /* Typography */
-        h1, h2, h3, h4 {
-            color: var(--dark);
-            line-height: 1.3;
-        }
-        
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-        }
-        
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background-color: var(--primary);
-        }
-        
-        h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-        }
-        
-        p {
-            margin-bottom: 15px;
-            color: var(--text);
-            font-size: 1rem;
-        }
-        
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 12px 24px;
-            border-radius: var(--border-radius);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            text-align: center;
-            font-size: 1rem;
-        }
-        
-        .btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-        
-        .btn-secondary {
-            background-color: var(--secondary);
-        }
-        
-        .btn-secondary:hover {
-            background-color: var(--secondary-dark);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background-color: var(--light);
-            padding: 60px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-content {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-        
-        .hero-text {
-            flex: 1;
-        }
-        
-        .hero-image {
-            flex: 1;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-        
-        .hero-image img {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .hero-image img:hover {
-            transform: scale(1.02);
-        }
-        
-        /* Cards */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .card {
-            background-color: white;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-        
-        .card-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .card-body {
-            padding: 20px;
-        }
-        
-        .card-title {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-        
-        .card-text {
-            color: var(--text-light);
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
-        
-        /* Features */
-        .feature-card {
-            text-align: center;
-            padding: 30px 20px;
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-            transition: var(--transition);
-        }
-        
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1);
-            color: var(--secondary);
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            background-color: var(--dark);
-            color: white;
-        }
-        
-        .testimonial-card {
-            background-color: rgba(255,255,255,0.1);
-            padding: 25px;
-            border-radius: var(--border-radius);
-            position: relative;
-        }
-        
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 20px;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-        }
-        
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 15px;
-            border: 2px solid var(--primary);
-        }
-        
-        /* Contact Form */
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        input, select, textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: var(--border-radius);
-            font-family: 'Poppins', sans-serif;
-            transition: var(--transition);
-        }
-        
-        input:focus, 
-        select:focus, 
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 50px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-section h3 {
-            color: white;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            position: relative;
-        }
-        
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--primary);
-        }
-        
-        .footer-section p {
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 15px;
-        }
-        
-        .footer-section a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .footer-section a:hover {
-            color: var(--primary);
-            transform: translateX(5px);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            color: white;
-            font-size: 1.2rem;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-        }
-        
-        .social-links a:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.7);
-        }
-        
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: var(--primary);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2rem;
-            box-shadow: var(--shadow);
-            z-index: 99;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-        
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-3px);
-        }
-        
-        /* Responsive Adjustments */
-        @media (max-width: 992px) {
-            h1 {
-                font-size: 2rem;
+            .mobile-menu {
+                display: block;
             }
             
-            h2 {
-                font-size: 1.6rem;
-            }
-            
-            .hero-content {
-                gap: 30px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                padding-top: calc(var(--header-height) + 30px);
+            .section {
+                padding: 60px 0;
             }
             
             .hero {
-                padding: 40px 0;
-            }
-            
-            .hero-content {
-                flex-direction: column;
-            }
-            
-            .hero-text {
-                order: 2;
-                text-align: center;
-            }
-            
-            .hero-image {
-                order: 1;
+                padding: 80px 0;
             }
             
             .btn-group {
-                justify-content: center;
-            }
-            
-            h2::after {
-                left: 50%;
-                transform: translateX(-50%);
+                flex-direction: column;
+                align-items: center;
             }
             
             .footer-section h3::after {
-                left: 0;
-                transform: none;
+                left: 50%;
+                transform: translateX(-50%);
             }
         }
         
         @media (max-width: 576px) {
-            h1 {
+            .section-title {
                 font-size: 1.8rem;
             }
             
-            h2 {
-                font-size: 1.4rem;
-            }
-            
-            .btn {
-                padding: 10px 20px;
-            }
-            
-            .back-to-top {
-                width: 45px;
-                height: 45px;
-                font-size: 1rem;
-                bottom: 20px;
-                right: 20px;
+            .hero .lead {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -712,12 +645,12 @@
     <!-- Top Bar -->
     <div class="top-bar">
         <div class="container">
-            <p>Free delivery on orders above Rs 100 in Birgunj | Open 7 days a week: 7AM - 9PM</p>
+            Free delivery on orders above Rs 100 in Birgunj | Open 7 days a week: 7AM - 9PM
         </div>
     </div>
 
     <!-- Header -->
-    <header id="header">
+    <header>
         <nav class="container">
             <a href="index.html" class="logo">
                 <i class="fas fa-clinic-medical"></i>
@@ -725,12 +658,12 @@
             </a>
             
             <ul class="nav-links" id="navLinks">
-                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="products.html"><i class="fas fa-pills"></i> Products</a></li>
                 <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
                 <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-                <li>
-                    <a href="cart.html">
+                <li class="cart-icon">
+                    <a href="cart.html" aria-label="Shopping Cart">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">0</span>
                     </a>
@@ -753,28 +686,21 @@
 
     <main id="main-content">
         <!-- Hero Section -->
-        <section class="hero">
+        <section class="hero section">
             <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1>Your Health, Our Priority in Birgunj</h1>
-                        <p>Get all your medical needs delivered quickly to your doorstep. Quality medicines, healthcare products, and doctor consultations - all in one trusted place.</p>
-                        <div class="btn-group">
-                            <a href="products.html" class="btn">Shop Medicines</a>
-                            <a href="#doctor-appointment" class="btn btn-outline">Book Doctor</a>
-                        </div>
-                    </div>
-                    <div class="hero-image">
-                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88" alt="Pharmacy products" loading="lazy">
-                    </div>
+                <h1 class="section-title">Your Health, Our Priority in Birgunj</h1>
+                <p class="lead">Get all your medical needs delivered quickly to your doorstep. Quality medicines, healthcare products, and doctor consultations - all in one trusted place.</p>
+                <div class="btn-group">
+                    <a href="products.html" class="btn">Shop Medicines</a>
+                    <a href="#doctor-appointment" class="btn btn-outline">Book Doctor</a>
                 </div>
             </div>
         </section>
 
         <!-- Products Section -->
-        <section>
+        <section class="section">
             <div class="container">
-                <h2>Our Products</h2>
+                <h2 class="section-title">Our Products</h2>
                 <div class="grid">
                     <div class="card">
                         <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae" alt="Medicines" class="card-img" loading="lazy">
@@ -805,50 +731,45 @@
         </section>
 
         <!-- Services Section -->
-        <section style="background-color: var(--light);">
+        <section class="section bg-light">
             <div class="container">
-                <h2>Our Services</h2>
+                <h2 class="section-title">Our Services</h2>
                 <div class="grid">
-                    <div class="card feature-card">
-                        <div class="card-body text-center">
-                            <i class="fas fa-truck-fast feature-icon"></i>
-                            <h3 class="card-title">Fast Delivery</h3>
-                            <p class="card-text">Quick delivery within Birgunj, often within 2 hours</p>
-                        </div>
+                    <div class="feature-card">
+                        <i class="fas fa-truck-fast feature-icon"></i>
+                        <h3>Fast Delivery</h3>
+                        <p>Quick delivery within Birgunj, often within 2 hours</p>
                     </div>
-                    <div class="card feature-card">
-                        <div class="card-body text-center">
-                            <i class="fas fa-certificate feature-icon"></i>
-                            <h3 class="card-title">Genuine Products</h3>
-                            <p class="card-text">100% authentic medicines with proper storage</p>
-                        </div>
+                    <div class="feature-card">
+                        <i class="fas fa-certificate feature-icon"></i>
+                        <h3>Genuine Products</h3>
+                        <p>100% authentic medicines with proper storage</p>
                     </div>
-                    <div class="card feature-card">
-                        <div class="card-body text-center">
-                            <i class="fas fa-headset feature-icon"></i>
-                            <h3 class="card-title">24/7 Support</h3>
-                            <p class="card-text">Emergency support available round the clock</p>
-                        </div>
+                    <div class="feature-card">
+                        <i class="fas fa-headset feature-icon"></i>
+                        <h3>24/7 Support</h3>
+                        <p>Emergency support available round the clock</p>
                     </div>
-                    <div class="card feature-card">
-                        <div class="card-body text-center">
-                            <i class="fas fa-user-doctor feature-icon"></i>
-                            <h3 class="card-title">Doctor Consultation</h3>
-                            <p class="card-text">Book appointments with trusted doctors</p>
-                            <a href="#doctor-appointment" class="btn btn-secondary">Book Now</a>
-                        </div>
+                    <div class="feature-card">
+                        <i class="fas fa-user-doctor feature-icon"></i>
+                        <h3>Doctor Consultation</h3>
+                        <p>Book appointments with trusted doctors</p>
+                        <a href="#doctor-appointment" class="btn btn-secondary">Book Now</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Testimonials -->
-        <section class="testimonials">
+        <section class="section testimonials">
             <div class="container">
-                <h2>What Our Customers Say</h2>
+                <h2 class="section-title">What Our Customers Say</h2>
                 <div class="grid">
                     <div class="testimonial-card">
-                        <p class="testimonial-text">Sushant Medico has been my go-to pharmacy for years. Their delivery is always prompt and their staff is knowledgeable about medicines.</p>
+                        <div class="testimonial-text">
+                            <i class="fas fa-quote-left"></i>
+                            <p>Sushant Medico has been my go-to pharmacy for years. Their delivery is always prompt and their staff is knowledgeable about medicines.</p>
+                        </div>
                         <div class="testimonial-author">
                             <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ramesh Kumar" class="author-avatar" loading="lazy">
                             <div>
@@ -858,7 +779,10 @@
                         </div>
                     </div>
                     <div class="testimonial-card">
-                        <p class="testimonial-text">I appreciate their genuine medicines and professional service. They helped me find alternatives when my regular medicine was out of stock.</p>
+                        <div class="testimonial-text">
+                            <i class="fas fa-quote-left"></i>
+                            <p>I appreciate their genuine medicines and professional service. They helped me find alternatives when my regular medicine was out of stock.</p>
+                        </div>
                         <div class="testimonial-author">
                             <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sunita Sharma" class="author-avatar" loading="lazy">
                             <div>
@@ -872,29 +796,29 @@
         </section>
 
         <!-- Doctor Appointment -->
-        <section id="doctor-appointment">
+        <section class="section" id="doctor-appointment">
             <div class="container">
-                <h2>Book a Doctor Appointment</h2>
-                <div class="grid">
-                    <div>
+                <h2 class="section-title">Book a Doctor Appointment</h2>
+                <div class="two-column">
+                    <div class="column">
                         <p>Consult with our panel of experienced doctors from the comfort of your home or visit our clinic.</p>
                         <ul style="list-style: none; margin: 20px 0;">
                             <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
-                                <i class="fas fa-check-circle" style="color: var(--secondary); margin-right: 10px; margin-top: 3px;"></i>
+                                <i class="fas fa-check-circle" style="color: var(--secondary-color); margin-right: 10px; margin-top: 3px;"></i>
                                 Experienced doctors across specialties
                             </li>
                             <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
-                                <i class="fas fa-check-circle" style="color: var(--secondary); margin-right: 10px; margin-top: 3px;"></i>
+                                <i class="fas fa-check-circle" style="color: var(--secondary-color); margin-right: 10px; margin-top: 3px;"></i>
                                 Video and in-person consultations
                             </li>
                             <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
-                                <i class="fas fa-check-circle" style="color: var(--secondary); margin-right: 10px; margin-top: 3px;"></i>
+                                <i class="fas fa-check-circle" style="color: var(--secondary-color); margin-right: 10px; margin-top: 3px;"></i>
                                 Prescription delivered with medicines
                             </li>
                         </ul>
                     </div>
-                    <div>
-                        <form class="card" style="padding: 25px;">
+                    <div class="column">
+                        <form class="card" style="padding: 30px;">
                             <div class="form-group">
                                 <label for="name">Full Name</label>
                                 <input type="text" id="name" name="name" required>
@@ -920,12 +844,12 @@
         </section>
 
         <!-- Newsletter -->
-        <section style="background-color: var(--primary); color: white; text-align: center; padding: 40px 0;">
+        <section class="newsletter section">
             <div class="container">
-                <h2>Stay Updated with Health Tips & Offers</h2>
-                <p style="margin-bottom: 20px;">Subscribe to our newsletter for seasonal health advice, new arrivals, and exclusive discounts.</p>
-                <form style="max-width: 500px; margin: 0 auto; display: flex; gap: 10px;">
-                    <input type="email" placeholder="Enter your email" style="flex-grow: 1; padding: 12px; border: none; border-radius: var(--border-radius);">
+                <h2 class="section-title">Stay Updated with Health Tips & Offers</h2>
+                <p class="section-subtitle">Subscribe to our newsletter for seasonal health advice, new arrivals, and exclusive discounts.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
                     <button type="submit" class="btn btn-secondary">Subscribe</button>
                 </form>
             </div>
@@ -997,16 +921,6 @@
             navLinks.classList.remove('active');
             mobileMenuOverlay.classList.remove('active');
             document.body.style.overflow = '';
-        });
-        
-        // Header Scroll Effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
         });
         
         // Back to Top Button
