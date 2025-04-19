@@ -15,6 +15,7 @@
             --dark-color: #2c3e50;
             --light-color: #f8f9fa;
             --danger-color: #e74c3c;
+            --warning-color: #f39c12;
             --text-color: #333;
             --text-light: #7f8c8d;
             --shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -212,6 +213,53 @@
             margin: 0 auto 30px;
         }
         
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #27ae60;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+        
         /* Product Categories */
         .product-categories {
             display: flex;
@@ -315,7 +363,7 @@
         }
         
         .stars {
-            color: #f39c12;
+            color: var(--warning-color);
             font-size: 0.9rem;
         }
         
@@ -342,6 +390,26 @@
         
         .add-to-cart:hover {
             background-color: #2980b9;
+        }
+        
+        .quick-view-btn {
+            margin-top: 10px;
+            width: 100%;
+            background: none;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 8px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .quick-view-btn:hover {
+            background-color: rgba(52, 152, 219, 0.1);
         }
         
         /* Quick View Modal */
@@ -738,6 +806,10 @@
                 left: 50%;
                 transform: translateX(-50%);
             }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
         }
         
         @media (max-width: 576px) {
@@ -747,10 +819,6 @@
             
             .hero .lead {
                 font-size: 1.2rem;
-            }
-            
-            .newsletter-form {
-                flex-direction: column;
             }
         }
     </style>
@@ -849,7 +917,9 @@
                             <button class="add-to-cart">
                                 <i class="fas fa-cart-plus"></i> Add to Cart
                             </button>
-                            <button class="quick-view-btn" style="margin-top: 10px; width: 100%; background: none; border: 1px solid var(--primary-color); color: var(--primary-color); padding: 5px; border-radius: var(--border-radius); cursor: pointer;">Quick View</button>
+                            <button class="quick-view-btn">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
                         </div>
                     </div>
                     
@@ -874,7 +944,9 @@
                             <button class="add-to-cart">
                                 <i class="fas fa-cart-plus"></i> Add to Cart
                             </button>
-                            <button class="quick-view-btn" style="margin-top: 10px; width: 100%; background: none; border: 1px solid var(--primary-color); color: var(--primary-color); padding: 5px; border-radius: var(--border-radius); cursor: pointer;">Quick View</button>
+                            <button class="quick-view-btn">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
                         </div>
                     </div>
                     
@@ -901,7 +973,9 @@
                             <button class="add-to-cart">
                                 <i class="fas fa-cart-plus"></i> Add to Cart
                             </button>
-                            <button class="quick-view-btn" style="margin-top: 10px; width: 100%; background: none; border: 1px solid var(--primary-color); color: var(--primary-color); padding: 5px; border-radius: var(--border-radius); cursor: pointer;">Quick View</button>
+                            <button class="quick-view-btn">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
                         </div>
                     </div>
                     
@@ -926,7 +1000,9 @@
                             <button class="add-to-cart">
                                 <i class="fas fa-cart-plus"></i> Add to Cart
                             </button>
-                            <button class="quick-view-btn" style="margin-top: 10px; width: 100%; background: none; border: 1px solid var(--primary-color); color: var(--primary-color); padding: 5px; border-radius: var(--border-radius); cursor: pointer;">Quick View</button>
+                            <button class="quick-view-btn">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
                         </div>
                     </div>
                     
@@ -952,7 +1028,9 @@
                             <button class="add-to-cart">
                                 <i class="fas fa-cart-plus"></i> Add to Cart
                             </button>
-                            <button class="quick-view-btn" style="margin-top: 10px; width: 100%; background: none; border: 1px solid var(--primary-color); color: var(--primary-color); padding: 5px; border-radius: var(--border-radius); cursor: pointer;">Quick View</button>
+                            <button class="quick-view-btn">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
                         </div>
                     </div>
                     
@@ -978,7 +1056,9 @@
                             <button class="add-to-cart">
                                 <i class="fas fa-cart-plus"></i> Add to Cart
                             </button>
-                            <button class="quick-view-btn" style="margin-top: 10px; width: 100%; background: none; border: 1px solid var(--primary-color); color: var(--primary-color); padding: 5px; border-radius: var(--border-radius); cursor: pointer;">Quick View</button>
+                            <button class="quick-view-btn">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
                         </div>
                     </div>
                     
@@ -1003,7 +1083,9 @@
                             <button class="add-to-cart">
                                 <i class="fas fa-cart-plus"></i> Add to Cart
                             </button>
-                            <button class="quick-view-btn" style="margin-top: 10px; width: 100%; background: none; border: 1px solid var(--primary-color); color: var(--primary-color); padding: 5px; border-radius: var(--border-radius); cursor: pointer;">Quick View</button>
+                            <button class="quick-view-btn">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
                         </div>
                     </div>
                     
@@ -1030,7 +1112,9 @@
                             <button class="add-to-cart">
                                 <i class="fas fa-cart-plus"></i> Add to Cart
                             </button>
-                            <button class="quick-view-btn" style="margin-top: 10px; width: 100%; background: none; border: 1px solid var(--primary-color); color: var(--primary-color); padding: 5px; border-radius: var(--border-radius); cursor: pointer;">Quick View</button>
+                            <button class="quick-view-btn">
+                                <i class="fas fa-eye"></i> Quick View
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1052,7 +1136,7 @@
                         <span style="font-size: 1.2rem; color: var(--primary-color); font-weight: bold;">Rs. 45</span>
                         <span style="text-decoration: line-through; color: var(--text-light); margin-left: 10px;">Rs. 50</span>
                     </div>
-                    <div style="color: #f39c12;">
+                    <div style="color: var(--warning-color);">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
