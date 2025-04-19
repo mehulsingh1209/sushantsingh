@@ -564,6 +564,138 @@
             z-index: 100;
         }
         
+        /* Product Categories */
+        .product-categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .category-btn {
+            padding: 8px 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        
+        .category-btn:hover, 
+        .category-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 1;
+        }
+        
+        .product-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .product-body {
+            padding: 15px;
+        }
+        
+        .product-title {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .current-price {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .stars {
+            color: #f39c12;
+            font-size: 0.9rem;
+        }
+        
+        .rating-count {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            padding: 8px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #2980b9;
+        }
+        
         /* Mobile Nav Links */
         @media (max-width: 768px) {
             .nav-links {
@@ -625,6 +757,19 @@
                 left: 50%;
                 transform: translateX(-50%);
             }
+            
+            .two-column {
+                flex-direction: column;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .product-img {
+                height: 140px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -634,6 +779,22 @@
             
             .hero .lead {
                 font-size: 1.2rem;
+            }
+            
+            .product-categories {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            
+            .product-categories::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .category-btn {
+                white-space: nowrap;
             }
         }
     </style>
@@ -701,31 +862,222 @@
         <section class="section">
             <div class="container">
                 <h2 class="section-title">Our Products</h2>
-                <div class="grid">
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae" alt="Medicines" class="card-img" loading="lazy">
-                        <div class="card-body">
-                            <h3 class="card-title">Medicines</h3>
-                            <p class="card-text">Prescription and over-the-counter medicines for all your healthcare needs.</p>
-                            <a href="products.html" class="btn">Browse Medicines</a>
+                <p class="section-subtitle">Quality healthcare products for all your needs at competitive prices</p>
+                
+                <div class="product-categories">
+                    <button class="category-btn active">All Products</button>
+                    <button class="category-btn">Medicines</button>
+                    <button class="category-btn">Ayurvedic</button>
+                    <button class="category-btn">Baby Care</button>
+                    <button class="category-btn">Personal Care</button>
+                    <button class="category-btn">Wellness</button>
+                    <button class="category-btn">Medical Devices</button>
+                </div>
+                
+                <div class="product-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <span class="product-badge">10% OFF</span>
+                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae" alt="Medicines" class="product-img" loading="lazy">
+                        <div class="product-body">
+                            <h3 class="product-title">Paracetamol 500mg</h3>
+                            <div class="product-price">
+                                <span class="current-price">Rs. 45</span>
+                                <span class="original-price">Rs. 50</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-count">(42)</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
                         </div>
                     </div>
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7" alt="Healthcare products" class="card-img" loading="lazy">
-                        <div class="card-body">
-                            <h3 class="card-title">Healthcare</h3>
-                            <p class="card-text">Personal care, wellness products, and supplements for a healthier life.</p>
-                            <a href="products.html" class="btn">Browse Products</a>
+                    
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7" alt="Healthcare products" class="product-img" loading="lazy">
+                        <div class="product-body">
+                            <h3 class="product-title">Vitamin C Supplements</h3>
+                            <div class="product-price">
+                                <span class="current-price">Rs. 320</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="rating-count">(28)</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
                         </div>
                     </div>
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118" alt="Medical supplies" class="card-img" loading="lazy">
-                        <div class="card-body">
-                            <h3 class="card-title">Medical Supplies</h3>
-                            <p class="card-text">Essential medical equipment and supplies for home and professional use.</p>
-                            <a href="products.html" class="btn">Browse Supplies</a>
+                    
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <span class="product-badge">BESTSELLER</span>
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118" alt="Medical supplies" class="product-img" loading="lazy">
+                        <div class="product-body">
+                            <h3 class="product-title">Digital Thermometer</h3>
+                            <div class="product-price">
+                                <span class="current-price">Rs. 550</span>
+                                <span class="original-price">Rs. 650</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-count">(156)</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
                         </div>
                     </div>
+                    
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1597334948330-1d846c167538" alt="Baby care products" class="product-img" loading="lazy">
+                        <div class="product-body">
+                            <h3 class="product-title">Baby Diapers (Pack of 30)</h3>
+                            <div class="product-price">
+                                <span class="current-price">Rs. 899</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-count">(89)</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 5 -->
+                    <div class="product-card">
+                        <span class="product-badge">NEW</span>
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f" alt="Face masks" class="product-img" loading="lazy">
+                        <div class="product-body">
+                            <h3 class="product-title">Surgical Masks (Pack of 50)</h3>
+                            <div class="product-price">
+                                <span class="current-price">Rs. 299</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="rating-count">(34)</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 6 -->
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883" alt="Hand sanitizer" class="product-img" loading="lazy">
+                        <div class="product-body">
+                            <h3 class="product-title">Hand Sanitizer 500ml</h3>
+                            <div class="product-price">
+                                <span class="current-price">Rs. 249</span>
+                                <span class="original-price">Rs. 299</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-count">(67)</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 7 -->
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88" alt="Medical equipment" class="product-img" loading="lazy">
+                        <div class="product-body">
+                            <h3 class="product-title">Blood Pressure Monitor</h3>
+                            <div class="product-price">
+                                <span class="current-price">Rs. 2,499</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="rating-count">(23)</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 8 -->
+                    <div class="product-card">
+                        <span class="product-badge">20% OFF</span>
+                        <img src="https://images.unsplash.com/photo-1550831107-1553da8c8464" alt="First aid kit" class="product-img" loading="lazy">
+                        <div class="product-body">
+                            <h3 class="product-title">First Aid Kit (50 pieces)</h3>
+                            <div class="product-price">
+                                <span class="current-price">Rs. 1,199</span>
+                                <span class="original-price">Rs. 1,499</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-count">(112)</span>
+                            </div>
+                            <button class="add-to-cart">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="products.html" class="btn">View All Products</a>
                 </div>
             </div>
         </section>
@@ -958,6 +1310,35 @@
         }
         
         updateCartCount(0);
+        
+        // Product Category Filter
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // Here you would typically filter products by category
+                // For demo purposes, we're just toggling the active class
+            });
+        });
+        
+        // Add to Cart Functionality
+        const addToCartBtns = document.querySelectorAll('.add-to-cart');
+        addToCartBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const currentCount = parseInt(document.querySelector('.cart-count').textContent);
+                updateCartCount(currentCount + 1);
+                
+                // Show added to cart feedback
+                btn.innerHTML = '<i class="fas fa-check"></i> Added';
+                btn.style.backgroundColor = var('--secondary-color');
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-cart-plus"></i> Add to Cart';
+                    btn.style.backgroundColor = var('--primary-color');
+                }, 2000);
+            });
+        });
         
         // Lazy Loading for Images
         if ('loading' in HTMLImageElement.prototype) {
