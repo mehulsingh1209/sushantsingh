@@ -188,6 +188,119 @@
             color: var(--primary-color);
         }
         
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 98;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Enhanced Mobile Nav */
+        .nav-links {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background-color: white;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 80px 30px 30px;
+            transition: var(--transition);
+            z-index: 99;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+        
+        .nav-links.active {
+            left: 0;
+        }
+        
+        .nav-links li {
+            margin: 0 0 20px 0;
+            width: 100%;
+        }
+        
+        .nav-links a {
+            font-size: 1.1rem;
+            padding: 12px 15px;
+            border-radius: var(--border-radius);
+            width: 100%;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover,
+        .nav-links a:focus {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .nav-links a.active {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        .nav-links a.active::after {
+            display: none;
+        }
+        
+        /* Mobile Menu Close Button */
+        .mobile-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+            padding: 5px;
+            z-index: 100;
+        }
+        
+        .mobile-close-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Cart Icon in Mobile Menu */
+        .nav-links .cart-icon {
+            margin-top: 20px;
+        }
+        
+        .nav-links .cart-icon a {
+            display: inline-flex;
+            width: auto;
+            padding: 12px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--border-radius);
+        }
+        
+        .nav-links .cart-icon a:hover {
+            background-color: #2980b9;
+            transform: none;
+        }
+        
+        .nav-links .cart-count {
+            position: relative;
+            top: auto;
+            right: auto;
+            margin-left: 8px;
+        }
+        
         /* Hero Section */
         .hero {
             padding: 80px 0;
@@ -837,31 +950,6 @@
         }
         
         @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background-color: white;
-                flex-direction: column;
-                align-items: center;
-                padding: 40px 0;
-                transition: var(--transition);
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .nav-links li {
-                margin: 15px 0;
-            }
-            
-            .nav-links a {
-                font-size: 1.2rem;
-            }
-            
             .mobile-menu {
                 display: block;
             }
@@ -918,6 +1006,11 @@
             .social-links {
                 justify-content: center;
             }
+            
+            /* Larger tap targets for mobile */
+            .nav-links a {
+                padding: 15px 20px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -970,7 +1063,7 @@
                 <i class="fas fa-clinic-medical" aria-hidden="true"></i>
                 <span>Sushant Medico</span>
             </a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="products.html"><i class="fas fa-pills"></i> Products</a></li>
                 <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
@@ -987,6 +1080,14 @@
             </button>
         </nav>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu Close Button -->
+    <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close menu">
+        <i class="fas fa-times"></i>
+    </button>
 
     <main id="main-content">
         <!-- Hero Section -->
@@ -1110,13 +1211,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">Their doctor consultation service saved us during lockdown when we couldn't visit hospitals. The doctor was very patient and helpful.</p>
+                                        <div class="testimonial-card">
+                        <p class="testimonial-text">The doctor consultation service saved me a trip to the hospital when my child was sick. The prescribed medicines were delivered within an hour!</p>
                         <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Amit Patel" class="author-avatar" loading="lazy">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya Patel" class="author-avatar" loading="lazy">
                             <div class="author-info">
-                                <h4>Amit Patel</h4>
-                                <p>Local Business Owner</p>
+                                <h4>Priya Patel</h4>
+                                <p>Mother of Two</p>
                             </div>
                         </div>
                     </div>
@@ -1124,161 +1225,301 @@
             </div>
         </section>
 
-        <!-- Doctor Appointment Section -->
-        <section id="doctor-appointment" class="section bg-light">
-            <div class="container">
-                <h2 class="section-title">Book a Doctor Appointment</h2>
-                <div class="two-column">
-                    <div class="column">
-                        <h3>Consult with Our Trusted Doctors</h3>
-                        <p>We partner with qualified medical professionals to provide you with the best healthcare services. Book an appointment for in-person or online consultation.</p>
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check-circle"></i> Experienced specialists across various fields</li>
-                            <li><i class="fas fa-check-circle"></i> Flexible timings including evenings</li>
-                            <li><i class="fas fa-check-circle"></i> Secure online video consultations</li>
-                            <li><i class="fas fa-check-circle"></i> Personalized follow-up care</li>
-                            <li><i class="fas fa-check-circle"></i> Prescription delivery service</li>
-                        </ul>
-                        <div class="doctor-availability">
-                            <h4>Available Doctors:</h4>
-                            <ul class="feature-list">
-                                <li><i class="fas fa-user-md"></i> <strong>Dr. Anil Sharma</strong> - General Physician (Mon-Sat, 9AM-5PM)</li>
-                                <li><i class="fas fa-user-md"></i> <strong>Dr. Sameer Khan</strong> - Pediatrician (Tue, Thu, Sat 10AM-3PM)</li>
-                                <li><i class="fas fa-user-md"></i> <strong>Dr. Priya Gurung</strong> - Gynecologist (Mon, Wed, Fri 11AM-4PM)</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <form class="appointment-form" id="appointmentForm">
-                            <div class="form-group">
-                                <label for="name">Full Name *</label>
-                                <input type="text" id="name" name="name" required placeholder="Enter your full name">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number *</label>
-                                <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
-                                <div class="form-group">
-                                    <label for="email">Email Address</label>
-                                    <input type="email" id="email" name="email" placeholder="Enter your email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="doctor">Preferred Doctor</label>
-                                    <select id="doctor" name="doctor">
-                                        <option value="">Any Available Doctor</option>
-                                        <option value="dr-sharma">Dr. Anil Sharma (General Physician)</option>
-                                        <option value="dr-khan">Dr. Sameer Khan (Pediatrician)</option>
-                                        <option value="dr-gurung">Dr. Priya Gurung (Gynecologist)</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="date">Preferred Date *</label>
-                                    <input type="date" id="date" name="date" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="time">Preferred Time *</label>
-                                    <input type="time" id="time" name="time" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="notes">Additional Notes</label>
-                                    <textarea id="notes" name="notes" placeholder="Any special requirements or symptoms"></textarea>
-                                </div>
-                                <button type="submit" class="btn">Book Appointment</button>
-                            </form>
-                        </div>
-                    </div>
+        <!-- Doctor Appointment -->
+        <section class="section bg-light" id="doctor-appointment">
+            <div class="container two-column">
+                <div class="column">
+                    <h2>Book a Doctor Appointment</h2>
+                    <p>Consult with our panel of experienced doctors from the comfort of your home or visit our clinic.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Experienced doctors across specialties</li>
+                        <li><i class="fas fa-check-circle"></i> Video and in-person consultations</li>
+                        <li><i class="fas fa-check-circle"></i> Prescription delivered with medicines</li>
+                        <li><i class="fas fa-check-circle"></i> Follow-up care and advice</li>
+                    </ul>
                 </div>
-            </section>
-        
-            <!-- Newsletter Section -->
-            <section class="newsletter">
-                <div class="container">
-                    <h2>Stay Updated with Health Tips & Offers</h2>
-                    <p>Subscribe to our newsletter for the latest health news, product updates, and exclusive discounts.</p>
-                    <form class="newsletter-form">
-                        <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
-                        <button type="submit" class="btn btn-secondary">Subscribe</button>
+                <div class="column">
+                    <form class="appointment-form" id="appointmentForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email (Optional)</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="doctor">Preferred Doctor/Specialty</label>
+                            <select id="doctor" name="doctor" required>
+                                <option value="">Select Doctor/Specialty</option>
+                                <option value="general">General Physician</option>
+                                <option value="pediatric">Pediatrician</option>
+                                <option value="gynecologist">Gynecologist</option>
+                                <option value="cardiologist">Cardiologist</option>
+                                <option value="dermatologist">Dermatologist</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Preferred Date</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Preferred Time</label>
+                            <input type="time" id="time" name="time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Symptoms/Notes</label>
+                            <textarea id="message" name="message" placeholder="Briefly describe your symptoms or concerns"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-secondary">Book Appointment</button>
                     </form>
                 </div>
-            </section>
-        </main>
-        
-        <!-- Footer -->
-        <footer>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
             <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h3>Quick Links</h3>
-                        <ul>
-                            <li><a href="products.html">Products</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="privacy.html">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h3>Contact Info</h3>
-                        <div class="contact-info">
-                            <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Birgunj, Nepal</p>
-                            <p><i class="fas fa-phone" aria-hidden="true"></i> +977 XXXXXXXXX</p>
-                            <p><i class="fas fa-envelope" aria-hidden="true"></i> info@sushantmedico.com</p>
-                        </div>
-                    </div>
-                    <div class="footer-section">
-                        <h3>Follow Us</h3>
-                        <div class="social-links">
-                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        </div>
-                    </div>
-                    <div class="footer-section">
-                        <h3>Credits</h3>
-                        <p>Developed and designed by <a href="https://msr-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer">MSR</a></p>
+                <h2>Stay Updated with Health Tips & Offers</h2>
+                <p>Subscribe to our newsletter for seasonal health advice, new arrivals, and exclusive discounts.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-secondary">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Sushant Medico has been serving the Birgunj community since 2010, providing quality medicines and healthcare products with professional service.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <div class="footer-bottom">
-                    <p>&copy; <span id="year"></span> Sushant Medico. All rights reserved.</p>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="products.html"><i class="fas fa-chevron-right"></i> Products</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        <li><a href="#doctor-appointment"><i class="fas fa-chevron-right"></i> Doctor Appointment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Adarsh Nagar, Birgunj, Nepal</p>
+                        <p><i class="fas fa-phone"></i> +977 51-123456, 9855054321</p>
+                        <p><i class="fas fa-envelope"></i> info@sushantmedico.com</p>
+                        <p><i class="fas fa-clock"></i> Open Daily: 7AM - 9PM</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Payment Methods</h3>
+                    <p>We accept various payment options for your convenience.</p>
+                    <div class="payment-icons">
+                        <i class="fab fa-cc-visa" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                        <i class="fab fa-cc-paypal" title="PayPal"></i>
+                        <i class="fas fa-money-bill-wave" title="Cash on Delivery"></i>
+                    </div>
                 </div>
             </div>
-        </footer>
-        
-        <!-- Back to Top Button -->
-        <button class="back-to-top" id="backToTop" aria-label="Back to top">
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        <!-- Mobile Cart Button -->
-        <a href="cart.html" class="mobile-cart" aria-label="Shopping Cart">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-count">0</span>
-        </a>
-        
-        <script>
-            // Mobile menu toggle
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const navLinks = document.querySelector('.nav-links');
-            
-            mobileMenu.addEventListener('click', () => {
-                const isExpanded = mobileMenu.getAttribute('aria-expanded') === 'true';
-                mobileMenu.setAttribute('aria-expanded', !isExpanded);
-                navLinks.classList.toggle('active');
-                mobileMenu.innerHTML = isExpanded ? '<i class="fas fa-bars"></i>' : '<i class="fas fa-times"></i>';
+            <div class="footer-bottom">
+                <p>&copy; 2023 Sushant Medico. All Rights Reserved.</p>
+                <p class="developer-credit">Developed with <i class="fas fa-heart" style="color: #e74c3c;"></i> by <a href="#" target="_blank">Your Name</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Mobile Cart Button -->
+    <a href="cart.html" class="mobile-cart" aria-label="View cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </a>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenu');
+        const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        });
+
+        mobileCloseBtn.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        });
+
+        mobileMenuOverlay.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
             });
-        
-            // Update copyright year
-            document.getElementById('year').textContent = new Date().getFullYear();
-        
-            // Back to top button
-            const backToTop = document.getElementById('backToTop');
+        });
+
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form Submission Handling
+        const appointmentForm = document.getElementById('appointmentForm');
+        const newsletterForm = document.getElementById('newsletterForm');
+        const loader = document.getElementById('loader');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+
+        function showToast(message, type = 'success') {
+            toastMessage.textContent = message;
+            toast.className = `toast ${type} visible`;
+            setTimeout(() => {
+                toast.classList.remove('visible');
+            }, 5000);
+        }
+
+        appointmentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            loader.classList.add('active');
             
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    backToTop.classList.add('visible');
-                    document.querySelector('header').classList.add('scrolled');
+            // Simulate form submission
+            setTimeout(() => {
+                loader.classList.remove('active');
+                showToast('Appointment booked successfully! Our team will contact you shortly.', 'success');
+                appointmentForm.reset();
+            }, 2000);
+        });
+
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            loader.classList.add('active');
+            
+            // Simulate form submission
+            setTimeout(() => {
+                loader.classList.remove('active');
+                showToast('Thank you for subscribing to our newsletter!', 'success');
+                newsletterForm.reset();
+            }, 1500);
+        });
+
+        // Lazy Loading for Images
+        if ('loading' in HTMLImageElement.prototype) {
+            // Native lazy loading is supported
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            lazyImages.forEach(img => {
+                img.src = img.dataset.src;
+            });
+        } else {
+            // Fallback for browsers without native lazy loading
+            const lazyLoad = target => {
+                const io = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            observer.disconnect();
+                        }
+                    });
+                });
+                io.observe(target);
+            };
+
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            lazyImages.forEach(lazyLoad);
+        }
+
+        // Accessibility improvements
+        document.addEventListener('keydown', (e) => {
+            // Close mobile menu on ESC key
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Focus trap for mobile menu
+        const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+        const firstFocusableElement = navLinks.querySelectorAll(focusableElements)[0];
+        const focusableContent = navLinks.querySelectorAll(focusableElements);
+        const lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+        document.addEventListener('keydown', (e) => {
+            if (!navLinks.classList.contains('active')) return;
+
+            if (e.key === 'Tab') {
+                if (e.shiftKey) {
+                    if (document.activeElement === firstFocusableElement) {
+                        lastFocusableElement.focus();
+                        e.preventDefault();
+                    }
                 } else {
-                    backToTop.classList.remove('visible');
-                    document.querySelector('header').classList.remove('scrolled');
+                    if (document.activeElement === lastFocusableElement) {
+                        firstFocusableElement.focus();
+                        e.preventDefault();
+                    }
                 }
-            });
-            
-           
+            }
+        });
+    </script>
+</body>
+</html>
