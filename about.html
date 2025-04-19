@@ -5,38 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Learn about Sushant Medico - Your trusted pharmacy in Birgunj for quality medicines and healthcare services">
     <title>About Us - Sushant Medico</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Font Loading Optimization -->
-    <style>
-        @font-face {
-            font-family: 'Poppins';
-            font-display: swap;
-            src: url('fonts/Poppins.woff2') format('woff2');
-        }
-    </style>
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Pharmacy",
-        "name": "Sushant Medico",
-        "description": "Your trusted pharmacy in Birgunj",
-        "url": "https://sushantmedico.com",
-        "logo": "https://sushantmedico.com/logo.webp",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "123 Medical Street",
-            "addressLocality": "Birgunj",
-            "addressCountry": "NP"
-        }
-    }
-    </script>
-    
     <style>
         /* Base Styles */
         :root {
@@ -194,7 +164,6 @@
         /* Sections */
         .section {
             padding: 80px 0;
-            animation: fadeIn 0.6s ease-out;
         }
         
         .section-title {
@@ -273,12 +242,6 @@
             box-shadow: var(--shadow);
             margin-bottom: 30px;
             text-align: center;
-            transition: var(--transition);
-        }
-        
-        .mission-card:hover, .values-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
         
         .mission-card i, .values-card i {
@@ -298,17 +261,10 @@
         }
         
         /* Timeline */
-        .timeline-scroller {
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 20px;
-        }
-        
         .timeline {
-            display: flex;
-            min-width: fit-content;
             position: relative;
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px 0;
         }
         
@@ -328,8 +284,6 @@
             position: relative;
             width: 50%;
             box-sizing: border-box;
-            scroll-snap-align: start;
-            flex-shrink: 0;
         }
         
         .timeline-item:nth-child(odd) {
@@ -411,7 +365,6 @@
         
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
         
         .service-card i {
@@ -435,11 +388,6 @@
             background-color: white;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .team-member:hover {
-            transform: translateY(-5px);
         }
         
         .team-member img {
@@ -477,11 +425,6 @@
             background-color: white;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .community-card:hover {
-            transform: translateY(-5px);
         }
         
         .community-card i {
@@ -504,11 +447,6 @@
             background-color: white;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-5px);
         }
         
         .quote {
@@ -534,6 +472,14 @@
         .customer {
             display: flex;
             align-items: center;
+        }
+        
+        .customer img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
         }
         
         /* Footer */
@@ -672,47 +618,6 @@
             background-color: var(--light-color);
         }
         
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Dark Mode */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --dark-color: #f8f9fa;
-                --light-color: #2c3e50;
-                --text-color: #ffffff;
-                --text-light: #bdc3c7;
-            }
-            
-            body {
-                background: #121212;
-            }
-            
-            header, 
-            .mission-card,
-            .values-card,
-            .timeline-content,
-            .stat-card,
-            .service-card,
-            .team-member,
-            .community-card,
-            .testimonial-card {
-                background-color: #1e1e1e;
-                color: #ffffff;
-            }
-            
-            .nav-links a {
-                color: #ffffff;
-            }
-            
-            .bg-light {
-                background-color: #2c3e50;
-            }
-        }
-        
         /* Responsive Styles */
         @media (max-width: 992px) {
             .section {
@@ -764,7 +669,6 @@
                 padding: 12px 15px;
                 border-radius: var(--border-radius);
                 width: 100%;
-                min-height: 48px;
             }
             
             .nav-links a:hover,
@@ -820,13 +724,6 @@
             .mobile-cart {
                 display: flex;
             }
-            
-            /* Mobile touch targets */
-            .btn, .add-to-cart {
-                min-height: 48px;
-                min-width: 48px;
-                padding: 12px 24px;
-            }
         }
         
         @media (max-width: 576px) {
@@ -853,6 +750,43 @@
             .team-member {
                 padding: 20px;
             }
+            
+            /* Mobile-specific optimizations */
+            .section-title::after {
+                width: 60px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .stat-card {
+                padding: 20px 15px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .timeline-content {
+                padding: 15px;
+            }
+            
+            .timeline-year {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .team-member img {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .customer img {
+                width: 50px;
+                height: 50px;
+            }
         }
     </style>
 </head>
@@ -876,21 +810,19 @@
             </a>
             
             <ul class="nav-links" id="navLinks">
-                <li><a href="index.html"><i class="fas fa-home"></i> <span class="visually-hidden">Home</span></a></li>
-                <li><a href="products.html"><i class="fas fa-pills"></i> <span class="visually-hidden">Products</span></a></li>
-                <li><a href="about.html" class="active"><i class="fas fa-info-circle"></i> <span class="visually-hidden">About</span></a></li>
-                <li><a href="contact.html"><i class="fas fa-envelope"></i> <span class="visually-hidden">Contact</span></a></li>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="products.html"><i class="fas fa-pills"></i> Products</a></li>
+                <li><a href="about.html" class="active"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
                 <li class="cart-icon">
                     <a href="cart.html" aria-label="Shopping Cart">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="visually-hidden">Cart</span>
                         <span class="cart-count">0</span>
                     </a>
                 </li>
             </ul>
             
             <button class="mobile-menu" id="mobileMenu" aria-label="Menu">
-                <span class="visually-hidden">Menu</span>
                 <i class="fas fa-bars"></i>
             </button>
         </nav>
@@ -916,12 +848,7 @@
                         <h2>Our Story</h2>
                         <p>Founded in 2010 by Sushant Singh Rajput, Sushant Medico began as a small neighborhood pharmacy with a big vision - to provide accessible, affordable, and quality healthcare to the people of Birgunj.</p>
                         <p>What started as a modest store has grown into one of Birgunj's most trusted pharmacies, serving thousands of satisfied customers each year. Our commitment to genuine products, expert advice, and compassionate service has been the cornerstone of our success.</p>
-                        <picture>
-                            <source srcset="about-image.webp" type="image/webp">
-                            <source srcset="about-image.jpg" type="image/jpeg"> 
-                            <img src="about-image.jpg" alt="Sushant Medico store interior" 
-                                loading="lazy" width="800" height="500" class="about-image">
-                        </picture>
+                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sushant Medico store interior" class="about-image" loading="lazy">
                     </div>
                     <div class="column">
                         <div class="mission-card">
@@ -948,35 +875,33 @@
         <section class="section bg-light">
             <div class="container">
                 <h2 class="section-title">Our Journey</h2>
-                <div class="timeline-scroller">
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-year">2010</div>
-                            <div class="timeline-content">
-                                <h3>Founded in Birgunj</h3>
-                                <p>Sushant Medico opened its doors as a small pharmacy serving the Adarsh Nagar community</p>
-                            </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010</div>
+                        <div class="timeline-content">
+                            <h3>Founded in Birgunj</h3>
+                            <p>Sushant Medico opened its doors as a small pharmacy serving the Adarsh Nagar community</p>
                         </div>
-                        <div class="timeline-item">
-                            <div class="timeline-year">2014</div>
-                            <div class="timeline-content">
-                                <h3>Expanded Services</h3>
-                                <p>Added home delivery service and extended operating hours</p>
-                            </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2014</div>
+                        <div class="timeline-content">
+                            <h3>Expanded Services</h3>
+                            <p>Added home delivery service and extended operating hours</p>
                         </div>
-                        <div class="timeline-item">
-                            <div class="timeline-year">2018</div>
-                            <div class="timeline-content">
-                                <h3>Renovated Store</h3>
-                                <p>Completed major renovation to improve customer experience</p>
-                            </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2018</div>
+                        <div class="timeline-content">
+                            <h3>Renovated Store</h3>
+                            <p>Completed major renovation to improve customer experience</p>
                         </div>
-                        <div class="timeline-item">
-                            <div class="timeline-year">2022</div>
-                            <div class="timeline-content">
-                                <h3>10,000+ Customers</h3>
-                                <p>Celebrated serving over 10,000 satisfied customers</p>
-                            </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2022</div>
+                        <div class="timeline-content">
+                            <h3>10,000+ Customers</h3>
+                            <p>Celebrated serving over 10,000 satisfied customers</p>
                         </div>
                     </div>
                 </div>
@@ -989,15 +914,15 @@
                 <h2 class="section-title">Our Achievements</h2>
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <span class="stat-number" data-count="10">0</span>+
+                        <span class="stat-number">10+</span>
                         <span class="stat-label">Years Serving Birgunj</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-number" data-count="50000">0</span>+
+                        <span class="stat-number">50,000+</span>
                         <span class="stat-label">Customers Served</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-number" data-count="100">0</span>%
+                        <span class="stat-number">100%</span>
                         <span class="stat-label">Genuine Medicines</span>
                     </div>
                 </div>
@@ -1040,23 +965,13 @@
                 <p class="section-subtitle">Our dedicated team of healthcare professionals is committed to your well-being</p>
                 <div class="team-grid">
                     <div class="team-member">
-                        <picture>
-                            <source srcset="team-member-1.webp" type="image/webp">
-                            <source srcset="team-member-1.jpg" type="image/jpeg"> 
-                            <img src="team-member-1.jpg" alt="Sushant Singh Rajput, Lead Pharmacist" 
-                                loading="lazy" width="150" height="150">
-                        </picture>
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Sushant Singh Rajput, Lead Pharmacist" loading="lazy">
                         <h3>Sushant Singh Rajput</h3>
                         <p class="position">Lead Pharmacist & Founder</p>
                         <p class="bio">With over 5 years of experience in pharmaceutical care, Sushant ensures Sushant Medico maintains the highest standards of service.</p>
                     </div>
                     <div class="team-member">
-                        <picture>
-                            <source srcset="team-member-2.webp" type="image/webp">
-                            <source srcset="team-member-2.jpg" type="image/jpeg"> 
-                            <img src="team-member-2.jpg" alt="Priya Sharma, Customer Service" 
-                                loading="lazy" width="150" height="150">
-                        </picture>
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya Sharma, Customer Service" loading="lazy">
                         <h3>Priya Sharma</h3>
                         <p class="position">Customer Service & Wellness Advisor</p>
                         <p class="bio">Priya helps customers find the right healthcare products and provides guidance on preventive care.</p>
@@ -1100,12 +1015,7 @@
                             <p>Sushant Medico has been our family pharmacy for years. Their genuine medicines and helpful advice keep us coming back.</p>
                         </div>
                         <div class="customer">
-                            <picture>
-                                <source srcset="customer-1.webp" type="image/webp">
-                                <source srcset="customer-1.jpg" type="image/jpeg"> 
-                                <img src="customer-1.jpg" alt="Anil Gupta" 
-                                    loading="lazy" width="60" height="60">
-                            </picture>
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Anil Gupta" loading="lazy">
                             <div>
                                 <h4>Anil Gupta</h4>
                                 <p>Regular Customer</p>
@@ -1118,12 +1028,7 @@
                             <p>Their home delivery service is a lifesaver for my elderly parents. Always prompt and reliable.</p>
                         </div>
                         <div class="customer">
-                            <picture>
-                                <source srcset="customer-2.webp" type="image/webp">
-                                <source srcset="customer-2.jpg" type="image/jpeg"> 
-                                <img src="customer-2.jpg" alt="Sunita Yadav" 
-                                    loading="lazy" width="60" height="60">
-                            </picture>
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sunita Yadav" loading="lazy">
                             <div>
                                 <h4>Sunita Yadav</h4>
                                 <p>Customer since 2015</p>
@@ -1255,41 +1160,22 @@
             lazyImages.forEach(lazyLoad);
         }
         
-        // Dynamic Stats Counter
-        const counters = document.querySelectorAll('.stat-number');
-        const speed = 200;
-        
-        function animateCounters() {
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-count');
-                const count = +counter.innerText;
-                const increment = target / speed;
-
-                const updateCount = () => {
-                    if(count < target) {
-                        counter.innerText = Math.ceil(count + increment);
-                        setTimeout(updateCount, 1);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                updateCount();
+        // Mobile-specific optimizations
+        if (window.innerWidth <= 576) {
+            // Adjust font sizes for better mobile readability
+            document.documentElement.style.fontSize = '14px';
+            
+            // Add touch feedback for buttons
+            const buttons = document.querySelectorAll('button, a.btn, .service-card, .community-card');
+            buttons.forEach(button => {
+                button.style.transition = 'transform 0.1s ease, background-color 0.1s ease';
+                button.addEventListener('touchstart', () => {
+                    button.style.transform = 'scale(0.98)';
+                });
+                button.addEventListener('touchend', () => {
+                    button.style.transform = '';
+                });
             });
-        }
-        
-        // Trigger counters when section is in view
-        const statsSection = document.querySelector('.stats-grid');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        if (statsSection) {
-            observer.observe(statsSection);
         }
     </script>
 </body>
