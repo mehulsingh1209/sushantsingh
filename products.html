@@ -1,14 +1,575 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Previous head content remains the same until the style section -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sushant Medico - Your trusted pharmacy in Birgunj for quality medicines, healthcare products, and doctor consultations">
+    <title>Sushant Medico - Trusted Pharmacy in Birgunj</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Previous styles remain the same until the add-to-cart button style */
+        /* Base Styles */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+            --border-radius: 8px;
+        }
         
-        /* Update the add-to-cart button to be order-now button */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+            transition: var(--transition);
+        }
+        
+        body.drawer-open {
+            overflow: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            text-decoration: none;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .menu-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+        
+        /* Navigation Drawer */
+        .nav-drawer {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .nav-drawer.open {
+            left: 0;
+        }
+        
+        .drawer-header {
+            padding: 20px;
+            background-color: var(--dark-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .drawer-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+        
+        .drawer-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .nav-links {
+            list-style: none;
+            padding: 20px 0;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        
+        .nav-links li {
+            margin-bottom: 5px;
+        }
+        
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            text-decoration: none;
+            color: var(--dark-color);
+            transition: var(--transition);
+            gap: 15px;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .nav-links i {
+            width: 24px;
+            text-align: center;
+        }
+        
+        .drawer-footer {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 120px 0;
+        }
+        
+        .hero .section-title {
+            color: white;
+        }
+        
+        .hero .lead {
+            font-size: 1.5rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #27ae60;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 15px auto 0;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: var(--light-color);
+        }
+        
+        .service-card {
+            text-align: center;
+            padding: 40px 30px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--dark-color);
+            color: white;
+        }
+        
+        .testimonial-card {
+            padding: 30px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: var(--border-radius);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .testimonial-text i {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 2rem;
+            color: var(--primary-color);
+            opacity: 0.3;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid var(--primary-color);
+        }
+        
+        /* Doctor Appointment */
+        .appointment-form {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+        
+        input:focus, 
+        select:focus, 
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .newsletter-form input {
+            flex-grow: 1;
+            padding: 12px;
+            border: none;
+            border-radius: var(--border-radius);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+        
+        .footer-section a:hover {
+            opacity: 1;
+            color: var(--primary-color);
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .social-links a:hover {
+            opacity: 1;
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+        }
+        
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        /* Two Column Layout */
+        .two-column {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        /* Order Form Styles */
         .order-now-btn {
             width: 100%;
-            padding: 8px;
+            padding: 12px;
             background-color: var(--secondary-color);
             color: white;
             border: none;
@@ -20,13 +581,14 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            margin-top: 15px;
         }
         
         .order-now-btn:hover {
             background-color: #27ae60;
+            transform: translateY(-3px);
         }
         
-        /* Order Form Modal */
         .order-modal {
             position: fixed;
             top: 0;
@@ -62,30 +624,6 @@
             color: var(--text-light);
         }
         
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: var(--border-radius);
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .form-group textarea {
-            min-height: 100px;
-        }
-        
         .file-upload {
             display: flex;
             flex-direction: column;
@@ -94,6 +632,7 @@
             border: 2px dashed #ddd;
             border-radius: var(--border-radius);
             margin-bottom: 20px;
+            cursor: pointer;
         }
         
         .file-upload i {
@@ -147,7 +686,6 @@
             background-color: #2980b9;
         }
         
-        /* Success Message */
         .order-success {
             text-align: center;
             padding: 30px;
@@ -160,249 +698,584 @@
             margin-bottom: 20px;
         }
         
-        /* Remove cart icon from navigation */
-        .cart-icon {
-            display: none;
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .product-body {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .product-category {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            margin: 15px 0;
+        }
+        
+        .current-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .original-price {
+            font-size: 1rem;
+            text-decoration: line-through;
+            color: var(--text-light);
+            margin-left: 8px;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--danger-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: var(--border-radius);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .two-column {
+                flex-direction: column;
+            }
+            
+            .nav-drawer {
+                width: 280px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .payment-methods {
+                flex-direction: column;
+            }
+            
+            .payment-method {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero .lead {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Previous header content remains the same, except remove the cart icon -->
+    <!-- Header -->
     <header>
-        <nav class="container">
+        <div class="container header-container">
             <a href="index.html" class="logo">
                 <i class="fas fa-clinic-medical"></i>
                 <span>Sushant Medico</span>
             </a>
             
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="products.html" class="active"><i class="fas fa-pills"></i> Products</a></li>
-                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
-                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-            </ul>
-            
-            <button class="mobile-menu" id="mobileMenu" aria-label="Menu">
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Avatar" class="user-avatar">
                 <i class="fas fa-bars"></i>
             </button>
-        </nav>
+        </div>
     </header>
 
-    <!-- Main content remains the same until the product cards -->
-    <main id="main-content">
-        <section class="section">
+    <!-- Navigation Drawer -->
+    <div class="nav-drawer" id="navDrawer">
+        <div class="drawer-header">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Avatar" class="drawer-avatar">
+            <div>
+                <h3>Welcome</h3>
+                <p>User Name</p>
+            </div>
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="products.html"><i class="fas fa-pills"></i> Products</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        
+        <div class="drawer-footer">
+            <p>&copy; <span id="year"></span> Sushant Medico</p>
+        </div>
+    </div>
+    
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero section">
             <div class="container">
-                <!-- Previous content remains the same until the product cards -->
-                
-                <div class="product-grid" id="productsGrid">
-                    <!-- Product 1 - Update buttons -->
-                    <div class="product-card" data-category="medicines">
-                        <span class="product-badge">10% OFF</span>
-                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae" alt="Paracetamol 500mg" class="product-img" loading="lazy">
-                        <div class="product-body">
-                            <h3 class="product-title">Paracetamol 500mg</h3>
-                            <p class="product-category">Medicines</p>
-                            <div class="product-price">
-                                <span class="current-price">Rs. 45</span>
-                                <span class="original-price">Rs. 50</span>
-                            </div>
-                            <div class="product-rating">
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                </div>
-                                <span class="rating-count">(42)</span>
-                            </div>
-                            <button class="order-now-btn" data-product="Paracetamol 500mg" data-price="45">
-                                <i class="fas fa-shopping-bag"></i> Order Now
-                            </button>
-                            <button class="quick-view-btn">
-                                <i class="fas fa-eye"></i> Quick View
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Repeat for other product cards, changing add-to-cart to order-now-btn -->
-                    <!-- ... other product cards ... -->
+                <h1 class="section-title">Your Health, Our Priority in Birgunj</h1>
+                <p class="lead">Get all your medical needs delivered quickly to your doorstep. Quality medicines, healthcare products, and doctor consultations - all in one trusted place.</p>
+                <div class="btn-group">
+                    <a href="#products" class="btn">Shop Medicines</a>
+                    <a href="#doctor-appointment" class="btn btn-outline">Book Doctor</a>
                 </div>
             </div>
         </section>
 
-        <!-- Order Form Modal -->
-        <div class="order-modal" id="orderModal">
-            <div class="order-content">
-                <button class="close-order-form" id="closeOrderForm">&times;</button>
-                <div id="orderForm">
-                    <h3 style="margin-bottom: 20px;">Place Your Order</h3>
-                    
-                    <div class="form-group">
-                        <label for="productName">Product</label>
-                        <input type="text" id="productName" readonly>
+        <!-- Services Section -->
+        <section class="section services">
+            <div class="container">
+                <h2 class="section-title">Our Services</h2>
+                <div class="grid">
+                    <div class="service-card">
+                        <i class="fas fa-truck-fast service-icon"></i>
+                        <h3>Fast Delivery</h3>
+                        <p>Quick delivery within Birgunj, often within 2 hours</p>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="productPrice">Price</label>
-                        <input type="text" id="productPrice" readonly>
+                    <div class="service-card">
+                        <i class="fas fa-certificate service-icon"></i>
+                        <h3>Genuine Products</h3>
+                        <p>100% authentic medicines with proper storage</p>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="customerName">Full Name *</label>
-                        <input type="text" id="customerName" required>
+                    <div class="service-card">
+                        <i class="fas fa-headset service-icon"></i>
+                        <h3>24/7 Support</h3>
+                        <p>Emergency support available round the clock</p>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="customerPhone">Phone Number *</label>
-                        <input type="tel" id="customerPhone" required>
+                    <div class="service-card">
+                        <i class="fas fa-user-doctor service-icon"></i>
+                        <h3>Doctor Consultation</h3>
+                        <p>Book appointments with trusted doctors</p>
+                        <a href="#doctor-appointment" class="btn btn-secondary" style="margin-top: 15px;">Book Now</a>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="customerEmail">Email</label>
-                        <input type="email" id="customerEmail">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="customerAddress">Delivery Address *</label>
-                        <textarea id="customerAddress" required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Upload Prescription (if required)</label>
-                        <div class="file-upload">
-                            <i class="fas fa-file-upload"></i>
-                            <span>Click to upload or drag and drop</span>
-                            <input type="file" id="prescriptionUpload" accept="image/*,.pdf" style="display: none;">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Payment Method *</label>
-                        <div class="payment-methods">
-                            <div class="payment-method" data-method="cash">
-                                <i class="fas fa-money-bill-wave"></i>
-                                <div>Cash on Delivery</div>
-                            </div>
-                            <div class="payment-method" data-method="khalti">
-                                <i class="fas fa-mobile-alt"></i>
-                                <div>Khalti</div>
-                            </div>
-                            <div class="payment-method" data-method="esewa">
-                                <i class="fas fa-wallet"></i>
-                                <div>eSewa</div>
-                            </div>
-                        </div>
-                        <input type="hidden" id="selectedPaymentMethod" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="orderNotes">Additional Notes</label>
-                        <textarea id="orderNotes" placeholder="Any special instructions..."></textarea>
-                    </div>
-                    
-                    <button type="button" class="submit-order" id="submitOrder">Place Order</button>
-                </div>
-                
-                <div class="order-success" id="orderSuccess">
-                    <i class="fas fa-check-circle"></i>
-                    <h3>Order Placed Successfully!</h3>
-                    <p>Thank you for your order. We'll contact you shortly to confirm.</p>
-                    <button class="quick-view-btn" id="continueShopping" style="margin-top: 20px;">
-                        <i class="fas fa-shopping-bag"></i> Continue Shopping
-                    </button>
                 </div>
             </div>
-        </div>
-        
-        <!-- Previous quick view modal remains the same -->
+        </section>
+
+        <!-- Products Section -->
+        <section class="section" id="products">
+            <div class="container">
+                <h2 class="section-title">Our Products</h2>
+                <p class="section-subtitle">Browse our range of quality medicines and healthcare products</p>
+                
+                <div class="product-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <span class="product-badge">10% OFF</span>
+                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae" alt="Paracetamol 500mg" class="product-img" loading="lazy">
+                        <div class="product-body">
+                            <h3 class="product-title">Paracetamol 500mg</h3>
+                            <p class="product-category">Pain Relief</p>
+                            <div class="product-price">
+                                <span class="current-price">Rs. 45</span>
+                                <span class="original-price">Rs. 50</span>
+                            </div>
+                            <button class="order-now-btn" data-product="Paracetamol 500mg" data-price="45">
+                                <i class="fas fa-shopping-bag"></i> Order Now
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1558645836-e44122a743ee" alt="Vitamin C" class="product-img" loading="lazy">
+                        <div class="product-body">
+                            <h3 class="product-title">Vitamin C 500mg</h3>
+                            <p class="product-category">Vitamins</p>
+                            <div class="product-price">
+                                <span class="current-price">Rs. 120</span>
+                            </div>
+                            <button class="order-now-btn" data-product="Vitamin C 500mg" data-price="120">
+                                <i class="fas fa-shopping-bag"></i> Order Now
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <span class="product-badge">15% OFF</span>
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea" alt="Hand Sanitizer" class="product-img" loading="lazy">
+                        <div class="product-body">
+                            <h3 class="product-title">Hand Sanitizer</h3>
+                            <p class="product-category">Hygiene</p>
+                            <div class="product-price">
+                                <span class="current-price">Rs. 170</span>
+                                <span class="original-price">Rs. 200</span>
+                            </div>
+                            <button class="order-now-btn" data-product="Hand Sanitizer" data-price="170">
+                                <i class="fas fa-shopping-bag"></i> Order Now
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88" alt="First Aid Kit" class="product-img" loading="lazy">
+                        <div class="product-body">
+                            <h3 class="product-title">First Aid Kit</h3>
+                            <p class="product-category">Medical Supplies</p>
+                            <div class="product-price">
+                                <span class="current-price">Rs. 850</span>
+                            </div>
+                            <button class="order-now-btn" data-product="First Aid Kit" data-price="850">
+                                <i class="fas fa-shopping-bag"></i> Order Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section testimonials">
+            <div class="container">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <div class="grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            <i class="fas fa-quote-left"></i>
+                            <p>Sushant Medico has been my go-to pharmacy for years. Their delivery is always prompt and their staff is knowledgeable about medicines.</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ramesh Kumar" class="author-avatar" loading="lazy">
+                            <div>
+                                <h4>Ramesh Kumar</h4>
+                                <p>Regular Customer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            <i class="fas fa-quote-left"></i>
+                            <p>I appreciate their genuine medicines and professional service. They helped me find alternatives when my regular medicine was out of stock.</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sunita Sharma" class="author-avatar" loading="lazy">
+                            <div>
+                                <h4>Sunita Sharma</h4>
+                                <p>Senior Citizen</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Doctor Appointment -->
+        <section class="section" id="doctor-appointment">
+            <div class="container">
+                <h2 class="section-title">Book a Doctor Appointment</h2>
+                <div class="two-column">
+                    <div class="column">
+                        <p>Consult with our panel of experienced doctors from the comfort of your home or visit our clinic.</p>
+                        <ul style="list-style: none; margin: 20px 0;">
+                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
+                                <i class="fas fa-check-circle" style="color: var(--secondary-color); margin-right: 10px; margin-top: 3px;"></i>
+                                Experienced doctors across specialties
+                            </li>
+                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
+                                <i class="fas fa-check-circle" style="color: var(--secondary-color); margin-right: 10px; margin-top: 3px;"></i>
+                                Video and in-person consultations
+                            </li>
+                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
+                                <i class="fas fa-check-circle" style="color: var(--secondary-color); margin-right: 10px; margin-top: 3px;"></i>
+                                Prescription delivered with medicines
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <form class="appointment-form">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="doctor">Preferred Doctor/Specialty</label>
+                                <select id="doctor" name="doctor" required>
+                                    <option value="">Select Doctor/Specialty</option>
+                                    <option value="general">General Physician</option>
+                                    <option value="pediatric">Pediatrician</option>
+                                    <option value="gynecologist">Gynecologist</option>
+                                    <option value="cardiologist">Cardiologist</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-secondary">Book Appointment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter section">
+            <div class="container">
+                <h2 class="section-title">Stay Updated with Health Tips & Offers</h2>
+                <p class="section-subtitle">Subscribe to our newsletter for seasonal health advice, new arrivals, and exclusive discounts.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-secondary">Subscribe</button>
+                </form>
+            </div>
+        </section>
     </main>
 
-    <!-- Previous footer remains the same -->
+    <!-- Order Form Modal -->
+    <div class="order-modal" id="orderModal">
+        <div class="order-content">
+            <button class="close-order-form" id="closeOrderForm">&times;</button>
+            <div id="orderForm">
+                <h3 style="margin-bottom: 20px;">Place Your Order</h3>
+                
+                <div class="form-group">
+                    <label for="productName">Product</label>
+                    <input type="text" id="productName" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="productPrice">Price</label>
+                    <input type="text" id="productPrice" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerName">Full Name *</label>
+                    <input type="text" id="customerName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerPhone">Phone Number *</label>
+                    <input type="tel" id="customerPhone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerEmail">Email</label>
+                    <input type="email" id="customerEmail">
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerAddress">Delivery Address *</label>
+                    <textarea id="customerAddress" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Upload Prescription (if required)</label>
+                    <div class="file-upload" id="fileUploadArea">
+                        <i class="fas fa-file-upload"></i>
+                        <span>Click to upload or drag and drop</span>
+                        <input type="file" id="prescriptionUpload" accept="image/*,.pdf" style="display: none;">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Payment Method *</label>
+                    <div class="payment-methods">
+                        <div class="payment-method" data-method="cash">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <div>Cash on Delivery</div>
+                        </div>
+                        <div class="payment-method" data-method="khalti">
+                            <i class="fas fa-mobile-alt"></i>
+                            <div>Khalti</div>
+                        </div>
+                        <div class="payment-method" data-method="esewa">
+                            <i class="fas fa-wallet"></i>
+                            <div>eSewa</div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="selectedPaymentMethod" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="orderNotes">Additional Notes</label>
+                                        <textarea id="orderNotes" placeholder="Any special instructions..."></textarea>
+                </div>
+                
+                <button type="button" class="submit-order" id="submitOrder">Place Order</button>
+            </div>
+            
+            <div class="order-success" id="orderSuccess">
+                <i class="fas fa-check-circle"></i>
+                <h3>Order Placed Successfully!</h3>
+                <p>Thank you for your order. We'll contact you shortly to confirm the details.</p>
+                <button class="btn btn-secondary" id="closeSuccessModal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Birgunj, Nepal</p>
+                        <p><i class="fas fa-phone" aria-hidden="true"></i> +977 XXXXXXXXX</p>
+                        <p><i class="fas fa-envelope" aria-hidden="true"></i> info@sushantmedico.com</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Credits</h3>
+                    <p>Developed and designed by <a href="https://msr-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer">MSR</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Sushant Medico. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script>
-        // Previous JavaScript remains the same until the cart functionality
+        // Navigation Drawer Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navDrawer = document.getElementById('navDrawer');
+        const drawerClose = document.getElementById('drawerClose');
+        const overlay = document.getElementById('overlay');
         
-        // Remove all cart-related JavaScript
+        menuToggle.addEventListener('click', () => {
+            navDrawer.classList.add('open');
+            overlay.classList.add('active');
+            document.body.classList.add('drawer-open');
+        });
         
-        // Order Form Functionality
+        drawerClose.addEventListener('click', () => {
+            navDrawer.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.classList.remove('drawer-open');
+        });
+        
+        overlay.addEventListener('click', () => {
+            navDrawer.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.classList.remove('drawer-open');
+        });
+        
+        // Order Modal Functionality
+        const orderButtons = document.querySelectorAll('.order-now-btn');
         const orderModal = document.getElementById('orderModal');
         const closeOrderForm = document.getElementById('closeOrderForm');
-        const orderBtns = document.querySelectorAll('.order-now-btn');
-        const productNameInput = document.getElementById('productName');
-        const productPriceInput = document.getElementById('productPrice');
-        const fileUpload = document.querySelector('.file-upload');
+        const closeSuccessModal = document.getElementById('closeSuccessModal');
+        const orderForm = document.getElementById('orderForm');
+        const orderSuccess = document.getElementById('orderSuccess');
+        const submitOrder = document.getElementById('submitOrder');
+        const fileUploadArea = document.getElementById('fileUploadArea');
         const prescriptionUpload = document.getElementById('prescriptionUpload');
         const paymentMethods = document.querySelectorAll('.payment-method');
         const selectedPaymentMethod = document.getElementById('selectedPaymentMethod');
-        const submitOrderBtn = document.getElementById('submitOrder');
-        const orderForm = document.getElementById('orderForm');
-        const orderSuccess = document.getElementById('orderSuccess');
-        const continueShoppingBtn = document.getElementById('continueShopping');
         
-        // Open order form when order button is clicked
-        orderBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const productName = btn.dataset.product;
-                const productPrice = btn.dataset.price;
+        orderButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const productName = button.getAttribute('data-product');
+                const productPrice = button.getAttribute('data-price');
                 
-                productNameInput.value = productName;
-                productPriceInput.value = `Rs. ${productPrice}`;
+                document.getElementById('productName').value = productName;
+                document.getElementById('productPrice').value = 'Rs. ' + productPrice;
                 
                 orderModal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
             });
         });
         
-        // Close order form
         closeOrderForm.addEventListener('click', () => {
             orderModal.style.display = 'none';
-            document.body.style.overflow = '';
+            document.body.style.overflow = 'auto';
         });
         
-        orderModal.addEventListener('click', (e) => {
-            if (e.target === orderModal) {
-                orderModal.style.display = 'none';
-                document.body.style.overflow = '';
-            }
+        closeSuccessModal.addEventListener('click', () => {
+            orderModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            orderForm.style.display = 'block';
+            orderSuccess.style.display = 'none';
         });
         
-        // File upload interaction
-        fileUpload.addEventListener('click', () => {
-            prescriptionUpload.click();
-        });
-        
-        prescriptionUpload.addEventListener('change', () => {
-            if (prescriptionUpload.files.length > 0) {
-                fileUpload.innerHTML = `
-                    <i class="fas fa-file-alt"></i>
-                    <span>${prescriptionUpload.files[0].name}</span>
-                `;
-            }
-        });
-        
-        // Payment method selection
-        paymentMethods.forEach(method => {
-            method.addEventListener('click', () => {
-                paymentMethods.forEach(m => m.classList.remove('selected'));
-                method.classList.add('selected');
-                selectedPaymentMethod.value = method.dataset.method;
-            });
-        });
-        
-        // Form submission
-        submitOrderBtn.addEventListener('click', () => {
-            // Basic validation
+        submitOrder.addEventListener('click', () => {
+            // Simple validation
             const requiredFields = ['customerName', 'customerPhone', 'customerAddress'];
             let isValid = true;
             
-            requiredFields.forEach(fieldId => {
-                const field = document.getElementById(fieldId);
-                if (!field.value.trim()) {
-                    field.style.borderColor = 'var(--danger-color)';
+            requiredFields.forEach(field => {
+                const element = document.getElementById(field);
+                if (!element.value.trim()) {
+                    element.style.borderColor = 'var(--danger-color)';
                     isValid = false;
                 } else {
-                    field.style.borderColor = '#ddd';
+                    element.style.borderColor = '#ddd';
                 }
             });
             
@@ -412,48 +1285,81 @@
             }
             
             if (isValid) {
-                // Here you would typically send the data to your backend
-                // For demonstration, we'll just show the success message
-                
-                // Collect form data (in a real app, you would send this to your server)
-                const formData = {
-                    product: productNameInput.value,
-                    price: productPriceInput.value,
-                    name: document.getElementById('customerName').value,
-                    phone: document.getElementById('customerPhone').value,
-                    email: document.getElementById('customerEmail').value,
-                    address: document.getElementById('customerAddress').value,
-                    paymentMethod: selectedPaymentMethod.value,
-                    notes: document.getElementById('orderNotes').value,
-                    prescription: prescriptionUpload.files[0] ? prescriptionUpload.files[0].name : null
-                };
-                
-                console.log('Order submitted:', formData); // For debugging
-                
-                // Show success message
                 orderForm.style.display = 'none';
                 orderSuccess.style.display = 'block';
             }
         });
         
-        // Continue shopping button
-        continueShoppingBtn.addEventListener('click', () => {
-            orderModal.style.display = 'none';
-            document.body.style.overflow = '';
-            
-            // Reset form
-            orderForm.style.display = 'block';
-            orderSuccess.style.display = 'none';
-            orderForm.reset();
-            fileUpload.innerHTML = `
-                <i class="fas fa-file-upload"></i>
-                <span>Click to upload or drag and drop</span>
-            `;
-            paymentMethods.forEach(m => m.classList.remove('selected'));
-            selectedPaymentMethod.value = '';
+        fileUploadArea.addEventListener('click', () => {
+            prescriptionUpload.click();
         });
         
-        // Rest of your existing JavaScript remains the same
+        prescriptionUpload.addEventListener('change', () => {
+            if (prescriptionUpload.files.length > 0) {
+                fileUploadArea.innerHTML = `
+                    <i class="fas fa-file-alt"></i>
+                    <span>${prescriptionUpload.files[0].name}</span>
+                `;
+            }
+        });
+        
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', () => {
+                paymentMethods.forEach(m => m.classList.remove('selected'));
+                method.classList.add('selected');
+                selectedPaymentMethod.value = method.getAttribute('data-method');
+            });
+        });
+        
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Close modal when clicking outside
+        orderModal.addEventListener('click', (e) => {
+            if (e.target === orderModal) {
+                orderModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Doctor Appointment Form Submission
+        const appointmentForm = document.querySelector('.appointment-form');
+        if (appointmentForm) {
+            appointmentForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Appointment request submitted! We will call you shortly to confirm.');
+                appointmentForm.reset();
+            });
+        }
+        
+        // Newsletter Form Submission
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for subscribing to our newsletter!');
+                newsletterForm.reset();
+            });
+        }
     </script>
 </body>
 </html>
