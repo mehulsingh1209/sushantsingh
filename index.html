@@ -97,6 +97,11 @@
             border: 2px solid var(--primary-color);
         }
         
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: none;
+        }
+        
         /* Navigation Drawer */
         .nav-drawer {
             position: fixed;
@@ -123,14 +128,6 @@
             display: flex;
             align-items: center;
             gap: 15px;
-        }
-        
-        .drawer-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary-color);
         }
         
         .drawer-close {
@@ -594,6 +591,41 @@
             }
         }
         
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none;
+            }
+            
+            .desktop-nav {
+                display: flex;
+                align-items: center;
+            }
+            
+            .desktop-nav ul {
+                display: flex;
+                list-style: none;
+                gap: 20px;
+            }
+            
+            .desktop-nav a {
+                text-decoration: none;
+                color: var(--dark-color);
+                font-weight: 500;
+                transition: var(--transition);
+                padding: 8px 12px;
+                border-radius: var(--border-radius);
+            }
+            
+            .desktop-nav a:hover {
+                color: var(--primary-color);
+                background-color: rgba(52, 152, 219, 0.1);
+            }
+            
+            .nav-drawer {
+                display: none;
+            }
+        }
+        
         @media (max-width: 576px) {
             .section-title {
                 font-size: 1.8rem;
@@ -614,21 +646,26 @@
                 <span>Sushant Medico</span>
             </a>
             
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Menu Toggle -->
             <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Avatar" class="user-avatar">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
 
-    <!-- Navigation Drawer -->
+    <!-- Mobile Navigation Drawer -->
     <div class="nav-drawer" id="navDrawer">
         <div class="drawer-header">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Avatar" class="drawer-avatar">
-            <div>
-                <h3>Welcome</h3>
-                <p>User Name</p>
-            </div>
             <button class="drawer-close" id="drawerClose" aria-label="Close menu">
                 <i class="fas fa-times"></i>
             </button>
