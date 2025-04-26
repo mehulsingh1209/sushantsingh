@@ -423,6 +423,50 @@
             min-height: 120px;
         }
         
+        /* Payment Screenshot Upload */
+        .payment-upload {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px dashed #ddd;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+        
+        .payment-upload label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .payment-upload i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .payment-upload p {
+            margin-bottom: 15px;
+        }
+        
+        .preview-container {
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .preview-image {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: var(--border-radius);
+        }
+        
+        .remove-image {
+            margin-top: 10px;
+            color: var(--danger-color);
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
         /* Footer */
         footer {
             background-color: var(--dark-color);
@@ -905,6 +949,20 @@
                             <textarea id="requirements" name="requirements" rows="5" required></textarea>
                         </div>
                         
+                        <!-- Payment Screenshot Upload -->
+                        <div class="payment-upload">
+                            <label for="paymentScreenshot">
+                                <i class="fas fa-upload"></i>
+                                <p>Upload Payment Screenshot (Optional)</p>
+                                <span class="btn btn-outline">Choose File</span>
+                                <input type="file" id="paymentScreenshot" name="paymentScreenshot" accept="image/*" style="display: none;">
+                            </label>
+                            <div class="preview-container" id="previewContainer">
+                                <img id="previewImage" class="preview-image" src="#" alt="Payment Screenshot Preview">
+                                <div class="remove-image" id="removeImage">Remove Image</div>
+                            </div>
+                        </div>
+                        
                         <button type="submit" class="btn btn-secondary">Submit Requirements</button>
                     </form>
                 </div>
@@ -921,6 +979,7 @@
                     </div>
                     <p>Make an advance payment securely to confirm your order!</p>
                     <p>Scan this QR code with your mobile banking app</p>
+                    <p><strong>WhatsApp Payment Confirmation: +977 9854035557</strong></p>
                 </div>
             </div>
         </section>
@@ -952,7 +1011,7 @@
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/9779854035557" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -1016,44 +1075,54 @@
             });
         });
         
-        // Form Submission
+        // Payment Screenshot Preview
+        const paymentScreenshot = document.getElementById('paymentScreenshot');
+        const previewContainer = document.getElementById('previewContainer');
+        const previewImage = document.getElementById('previewImage');
+        const removeImage = document.getElementById('removeImage');
+        
+        paymentScreenshot.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        removeImage.addEventListener('click', function() {
+            previewImage.src = '#';
+            previewContainer.style.display = 'none';
+            paymentScreenshot.value = '';
+        });
+        
+        // Form Submission to WhatsApp
         document.getElementById('productDemandForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             // Get form values
             const name = document.getElementById('customerName').value;
             const phone = document.getElementById('customerPhone').value;
+            const location = document.getElementById('customerLocation').value;
+            const customerType = document.getElementById('customerType').value;
+            const deliveryMode = document.getElementById('deliveryMode').value;
+            const requirements = document.getElementById('requirements').value;
+            
+            // Create WhatsApp message
+            let message = `*New Medicine Order Request*%0A%0A`;
+            message += `*Name:* ${name}%0A`;
+            message += `*Phone:* ${phone}%0A`;
+            message += `*Location:* ${location}%0A`;
+            message += `*Customer Type:* ${customerType}%0A`;
+            message += `*Delivery Mode:* ${deliveryMode}%0A%0A`;
+            message += `*Medicine Requirements:*%0A${requirements.replace(/\n/g, '%0A')}%0A%0A`;
+            message += `_This order was submitted via Sushant Medico website_`;
+            
+            // Open WhatsApp with pre-filled message
+            window.open(`https://wa.me/9779854035557?text=${message}`, '_blank');
             
             // Show success message
-            alert(`Thank you ${name}! We've received your medicine requirements. We'll contact you shortly at ${phone} to confirm your order.`);
-            
-            // Reset form
-            this.reset();
-        });
-        
-        // Lazy Loading for Images
-        if ('loading' in HTMLImageElement.prototype) {
-            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-            lazyImages.forEach(img => {
-                img.src = img.dataset.src;
-            });
-        } else {
-            const lazyLoad = target => {
-                const io = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.src = img.dataset.src;
-                            observer.disconnect();
-                        }
-                    });
-                });
-                io.observe(target);
-            };
-            
-            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-            lazyImages.forEach(lazyLoad);
-        }
-    </script>
-</body>
-</html>
+           
