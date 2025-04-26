@@ -8,13 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Base Styles */
+        /* Base Styles (Consistent with main page) */
         :root {
             --primary-color: #3498db;
             --secondary-color: #2ecc71;
             --dark-color: #2c3e50;
             --light-color: #f8f9fa;
             --danger-color: #e74c3c;
+            --warning-color: #f39c12;
             --text-color: #333;
             --text-light: #7f8c8d;
             --shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -33,6 +34,11 @@
             line-height: 1.6;
             color: var(--text-color);
             overflow-x: hidden;
+            transition: var(--transition);
+        }
+        
+        body.drawer-open {
+            overflow: hidden;
         }
         
         .container {
@@ -42,45 +48,20 @@
             padding: 0 15px;
         }
         
-        /* Accessibility */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--dark-color);
-            color: white;
-            padding: 8px;
-            z-index: 100;
-            transition: top 0.3s;
-        }
-        
-        .skip-link:focus {
-            top: 0;
-        }
-        
-        /* Header */
-        .top-bar {
-            background-color: var(--dark-color);
-            color: white;
-            padding: 10px 0;
-            font-size: 14px;
-            text-align: center;
-        }
-        
+        /* Header Styles (Consistent with main page) */
         header {
             background-color: white;
             box-shadow: var(--shadow);
             position: sticky;
             top: 0;
             z-index: 100;
+            padding: 15px 0;
         }
         
-        nav {
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
-            position: relative;
         }
         
         .logo {
@@ -97,113 +78,119 @@
             color: var(--primary-color);
         }
         
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 30px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark-color);
-            font-weight: 500;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            position: relative;
-        }
-        
-        .nav-links a:hover, 
-        .nav-links a.active {
-            color: var(--primary-color);
-        }
-        
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--primary-color);
-        }
-        
-        .cart-icon {
-            position: relative;
-        }
-        
-        .cart-count {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background-color: var(--danger-color);
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 12px;
-        }
-        
-        .mobile-menu {
-            display: none;
+        .menu-toggle {
             background: none;
             border: none;
             font-size: 1.5rem;
             color: var(--dark-color);
             cursor: pointer;
-            z-index: 101;
-        }
-        
-        /* Sections */
-        .section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            font-size: 2.2rem;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background-color: var(--primary-color);
-            margin: 15px auto 0;
-        }
-        
-        .section-subtitle {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--text-light);
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* Two Column Layout */
-        .two-column {
             display: flex;
-            gap: 40px;
             align-items: center;
+            gap: 10px;
         }
         
-        .column {
-            flex: 1;
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: none;
         }
         
-        /* About Page Specific Styles */
+        /* Navigation Drawer */
+        .nav-drawer {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .nav-drawer.open {
+            left: 0;
+        }
+        
+        .drawer-header {
+            padding: 20px;
+            background-color: var(--dark-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .drawer-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .nav-links {
+            list-style: none;
+            padding: 20px 0;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        
+        .nav-links li {
+            margin-bottom: 5px;
+        }
+        
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            text-decoration: none;
+            color: var(--dark-color);
+            transition: var(--transition);
+            gap: 15px;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .nav-links i {
+            width: 24px;
+            text-align: center;
+        }
+        
+        .drawer-footer {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Hero Section */
         .hero-about {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
                         url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
@@ -219,6 +206,23 @@
         .hero-about .lead {
             font-size: 1.5rem;
             font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        /* About Content */
+        .about-content {
+            padding: 80px 0;
+        }
+        
+        .two-column {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .column {
+            flex: 1;
         }
         
         .about-image {
@@ -261,6 +265,11 @@
         }
         
         /* Timeline */
+        .timeline-section {
+            background-color: var(--light-color);
+            padding: 80px 0;
+        }
+        
         .timeline {
             position: relative;
             max-width: 800px;
@@ -317,6 +326,10 @@
         }
         
         /* Stats */
+        .stats-section {
+            padding: 80px 0;
+        }
+        
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -347,33 +360,12 @@
             color: var(--text-light);
         }
         
-        /* Services */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
-            text-align: center;
-            padding: 40px 30px;
-            background-color: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .service-card i {
-            color: var(--primary-color);
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
         /* Team */
+        .team-section {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -410,30 +402,11 @@
             font-size: 0.95rem;
         }
         
-        /* Community */
-        .community-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .community-card {
-            text-align: center;
-            padding: 40px 30px;
-            background-color: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-        
-        .community-card i {
-            color: var(--primary-color);
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
         /* Testimonials */
+        .testimonials-section {
+            padding: 80px 0;
+        }
+        
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -482,7 +455,36 @@
             margin-right: 15px;
         }
         
-        /* Footer */
+        /* Buttons (Consistent with main page) */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #27ae60;
+        }
+        
+        /* Footer (Consistent with main page) */
         footer {
             background-color: var(--dark-color);
             color: white;
@@ -513,12 +515,6 @@
             background-color: var(--primary-color);
         }
         
-        .footer-section p {
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-            opacity: 0.8;
-        }
-        
         .footer-section ul {
             list-style: none;
         }
@@ -527,27 +523,23 @@
             margin-bottom: 12px;
         }
         
-        .footer-section ul li a {
+        .footer-section a {
             color: white;
             text-decoration: none;
             opacity: 0.8;
             transition: var(--transition);
         }
         
-        .footer-section ul li a:hover {
+        .footer-section a:hover {
             opacity: 1;
             color: var(--primary-color);
         }
         
         .contact-info p {
-            display: flex;
-            align-items: flex-start;
             margin-bottom: 15px;
-        }
-        
-        .contact-info i {
-            margin-right: 12px;
-            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .social-links {
@@ -584,109 +576,56 @@
             opacity: 0.7;
         }
         
-        .developer-credit {
-            margin-top: 10px;
-            font-size: 0.8rem;
-        }
-        
-        .developer-credit a {
-            color: var(--primary-color);
-        }
-        
-        /* Mobile Cart */
-        .mobile-cart {
+        /* Back to Top */
+        .back-to-top {
             position: fixed;
             bottom: 30px;
             right: 30px;
             background-color: var(--primary-color);
             color: white;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
             z-index: 99;
-            text-decoration: none;
-            display: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
         }
         
-        /* Backgrounds */
-        .bg-light {
-            background-color: var(--light-color);
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
         }
         
         /* Responsive Styles */
-        @media (max-width: 992px) {
-            .section {
-                padding: 60px 0;
+        @media (max-width: 768px) {
+            .hero-about {
+                padding: 80px 0;
+            }
+            
+            .hero-about .lead {
+                font-size: 1.2rem;
             }
             
             .two-column {
                 flex-direction: column;
             }
             
-            .column {
-                width: 100%;
-            }
-            
             .about-image {
-                max-height: 400px;
                 margin-bottom: 30px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 85%;
-                max-width: 300px;
-                height: 100vh;
-                background-color: white;
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 80px 25px 25px;
-                transition: var(--transition);
-                z-index: 99;
-                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .nav-links li {
-                margin: 0 0 15px 0;
-                width: 100%;
-            }
-            
-            .nav-links a {
-                font-size: 1rem;
-                padding: 12px 15px;
-                border-radius: var(--border-radius);
-                width: 100%;
-            }
-            
-            .nav-links a:hover,
-            .nav-links a:focus {
-                background-color: rgba(52, 152, 219, 0.1);
-                transform: translateX(5px);
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .hero-about {
-                padding: 100px 0;
-            }
-            
-            .hero-about .lead {
-                font-size: 1.2rem;
+                max-height: 400px;
             }
             
             .timeline::before {
@@ -703,62 +642,62 @@
                 left: 0;
             }
             
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .footer-section h3::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
-            .contact-info p {
-                justify-content: center;
-            }
-            
-            .social-links {
-                justify-content: center;
-            }
-            
-            .mobile-cart {
-                display: flex;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .section {
-                padding: 50px 0;
-            }
-            
-            .hero-about {
-                padding: 80px 0;
-            }
-            
-            .mission-card, .values-card {
-                padding: 20px;
-            }
-            
-            .service-card, .community-card {
-                padding: 30px 20px;
-            }
-            
             .team-member {
                 padding: 20px;
             }
             
-            /* Mobile-specific optimizations */
-            .section-title::after {
-                width: 60px;
+            .team-member img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none;
             }
             
-            .stats-grid {
-                grid-template-columns: 1fr;
+            .desktop-nav {
+                display: flex;
+                align-items: center;
+            }
+            
+            .desktop-nav ul {
+                display: flex;
+                list-style: none;
                 gap: 20px;
+            }
+            
+            .desktop-nav a {
+                text-decoration: none;
+                color: var(--dark-color);
+                font-weight: 500;
+                transition: var(--transition);
+                padding: 8px 12px;
+                border-radius: var(--border-radius);
+            }
+            
+            .desktop-nav a:hover {
+                color: var(--primary-color);
+                background-color: rgba(52, 152, 219, 0.1);
+            }
+            
+            .nav-drawer {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-about {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .mission-card, .values-card {
+                padding: 20px;
             }
             
             .stat-card {
@@ -778,62 +717,81 @@
                 font-size: 0.9rem;
             }
             
-            .team-member img {
-                width: 120px;
-                height: 120px;
-            }
-            
             .customer img {
                 width: 50px;
                 height: 50px;
+            }
+            
+            /* Mobile-specific optimizations */
+            html {
+                font-size: 14px;
+            }
+            
+            /* Add touch feedback for mobile */
+            .service-card, .team-member, .testimonial-card {
+                transition: transform 0.1s ease;
+            }
+            
+            .service-card:active, 
+            .team-member:active, 
+            .testimonial-card:active {
+                transform: scale(0.98);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Skip to Content Link -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="container">
-            Free delivery on orders above Rs 100 in Birgunj | Open 7 days a week: 7AM - 9PM
-        </div>
-    </div>
-
     <!-- Header -->
     <header>
-        <nav class="container">
+        <div class="container header-container">
             <a href="index.html" class="logo">
                 <i class="fas fa-clinic-medical"></i>
                 <span>Sushant Medico</span>
             </a>
             
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="products.html"><i class="fas fa-pills"></i> Products</a></li>
-                <li><a href="about.html" class="active"><i class="fas fa-info-circle"></i> About</a></li>
-                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-                <li class="cart-icon">
-                    <a href="cart.html" aria-label="Shopping Cart">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span>
-                    </a>
-                </li>
-            </ul>
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
             
-            <button class="mobile-menu" id="mobileMenu" aria-label="Menu">
+            <!-- Mobile Menu Toggle -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
                 <i class="fas fa-bars"></i>
             </button>
-        </nav>
+        </div>
     </header>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <!-- Mobile Navigation Drawer -->
+    <div class="nav-drawer" id="navDrawer">
+        <div class="drawer-header">
+            <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="products.html"><i class="fas fa-pills"></i> Products</a></li>
+            <li><a href="about.html" class="active"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        
+        <div class="drawer-footer">
+            <p>&copy; <span id="year"></span> Sushant Medico</p>
+        </div>
+    </div>
+    
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
 
-    <main id="main-content">
+    <main>
         <!-- Hero Section -->
-        <section class="hero-about section">
+        <section class="hero-about">
             <div class="container">
                 <h1 class="section-title">About Sushant Medico</h1>
                 <p class="lead">Your Trusted Healthcare Partner in Birgunj Since 2010</p>
@@ -841,7 +799,7 @@
         </section>
 
         <!-- About Content -->
-        <section class="section">
+        <section class="about-content">
             <div class="container">
                 <div class="two-column">
                     <div class="column">
@@ -872,7 +830,7 @@
         </section>
 
         <!-- Timeline -->
-        <section class="section bg-light">
+        <section class="timeline-section">
             <div class="container">
                 <h2 class="section-title">Our Journey</h2>
                 <div class="timeline">
@@ -908,8 +866,8 @@
             </div>
         </section>
 
-        <!-- Achievements -->
-        <section class="section">
+        <!-- Stats -->
+        <section class="stats-section">
             <div class="container">
                 <h2 class="section-title">Our Achievements</h2>
                 <div class="stats-grid">
@@ -929,37 +887,8 @@
             </div>
         </section>
 
-        <!-- Services -->
-        <section class="section bg-light">
-            <div class="container">
-                <h2 class="section-title">Why Choose Us</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <i class="fas fa-pills" aria-hidden="true"></i>
-                        <h3>Wide Product Range</h3>
-                        <p>From prescription medicines to wellness products, we stock everything you need under one roof</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-user-md" aria-hidden="true"></i>
-                        <h3>Expert Consultation</h3>
-                        <p>Our qualified pharmacists are available for free health consultations</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-clock" aria-hidden="true"></i>
-                        <h3>Convenient Hours</h3>
-                        <p>Open 7 days a week from 8 AM to 8 PM to serve you better</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-home" aria-hidden="true"></i>
-                        <h3>Home Delivery</h3>
-                        <p>Free delivery on orders above Rs 100 within Birgunj</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Team -->
-        <section class="section">
+        <section class="team-section">
             <div class="container">
                 <h2 class="section-title">Meet Our Team</h2>
                 <p class="section-subtitle">Our dedicated team of healthcare professionals is committed to your well-being</p>
@@ -980,32 +909,8 @@
             </div>
         </section>
 
-        <!-- Community -->
-        <section class="section bg-light">
-            <div class="container">
-                <h2 class="section-title">Community Involvement</h2>
-                <div class="community-grid">
-                    <div class="community-card">
-                        <i class="fas fa-heartbeat" aria-hidden="true"></i>
-                        <h3>Free Health Camps</h3>
-                        <p>We organize quarterly health checkup camps in underserved areas of Birgunj</p>
-                    </div>
-                    <div class="community-card">
-                        <i class="fas fa-school" aria-hidden="true"></i>
-                        <h3>School Health Programs</h3>
-                        <p>Educational programs about medication safety for local schools</p>
-                    </div>
-                    <div class="community-card">
-                        <i class="fas fa-hand-holding-medical" aria-hidden="true"></i>
-                        <h3>Senior Citizen Care</h3>
-                        <p>Special discounts and home delivery services for elderly customers</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Testimonials -->
-        <section class="section">
+        <section class="testimonials-section">
             <div class="container">
                 <h2 class="section-title">What Our Customers Say</h2>
                 <div class="testimonials-grid">
@@ -1047,18 +952,18 @@
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="products.html">Products</a></li>
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="about.html">About</a></li>
                         <li><a href="contact.html">Contact</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Contact Info</h3>
                     <div class="contact-info">
-                        <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Birgunj, Nepal</p>
-                        <p><i class="fas fa-phone" aria-hidden="true"></i> +977 XXXXXXXXX</p>
-                        <p><i class="fas fa-envelope" aria-hidden="true"></i> info@sushantmedico.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Birgunj, Nepal</p>
+                        <p><i class="fas fa-phone"></i> +977 XXXXXXXXX</p>
+                        <p><i class="fas fa-envelope"></i> info@sushantmedico.com</p>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -1080,12 +985,6 @@
         </div>
     </footer>
 
-    <!-- Mobile Cart Button -->
-    <a href="cart.html" class="mobile-cart" aria-label="Shopping Cart">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count">0</span>
-    </a>
-
     <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
@@ -1095,21 +994,28 @@
         // Current Year
         document.getElementById('year').textContent = new Date().getFullYear();
         
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenu');
-        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-        const navLinks = document.getElementById('navLinks');
+        // Navigation Drawer Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navDrawer = document.getElementById('navDrawer');
+        const drawerClose = document.getElementById('drawerClose');
+        const overlay = document.getElementById('overlay');
         
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.add('active');
-            mobileMenuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+        menuToggle.addEventListener('click', () => {
+            navDrawer.classList.add('open');
+            overlay.classList.add('active');
+            document.body.classList.add('drawer-open');
         });
         
-        mobileMenuOverlay.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            mobileMenuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
+        drawerClose.addEventListener('click', () => {
+            navDrawer.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.classList.remove('drawer-open');
+        });
+        
+        overlay.addEventListener('click', () => {
+            navDrawer.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.classList.remove('drawer-open');
         });
         
         // Back to Top Button
@@ -1128,13 +1034,6 @@
                 behavior: 'smooth'
             });
         });
-        
-        // Cart Count Update
-        function updateCartCount(count) {
-            document.querySelectorAll('.cart-count').forEach(el => {
-                el.textContent = count;
-            });
-        }
         
         // Lazy Loading for Images
         if ('loading' in HTMLImageElement.prototype) {
@@ -1162,18 +1061,15 @@
         
         // Mobile-specific optimizations
         if (window.innerWidth <= 576) {
-            // Adjust font sizes for better mobile readability
-            document.documentElement.style.fontSize = '14px';
-            
-            // Add touch feedback for buttons
-            const buttons = document.querySelectorAll('button, a.btn, .service-card, .community-card');
-            buttons.forEach(button => {
-                button.style.transition = 'transform 0.1s ease, background-color 0.1s ease';
-                button.addEventListener('touchstart', () => {
-                    button.style.transform = 'scale(0.98)';
+            // Add touch feedback for interactive elements
+            const interactiveElements = document.querySelectorAll('.service-card, .team-member, .testimonial-card, .btn');
+            interactiveElements.forEach(el => {
+                el.style.transition = 'transform 0.1s ease';
+                el.addEventListener('touchstart', () => {
+                    el.style.transform = 'scale(0.98)';
                 });
-                button.addEventListener('touchend', () => {
-                    button.style.transform = '';
+                el.addEventListener('touchend', () => {
+                    el.style.transform = '';
                 });
             });
         }
