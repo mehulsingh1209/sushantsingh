@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sushant Medico - Your trusted pharmacy in Birgunj for quality medicines, healthcare products, and doctor consultations">
-    <title>Sushant Medico - Trusted Pharmacy in Birgunj</title>
+    <meta name="description" content="Sushant Medico - Your trusted pharmacy in Birgunj for quality medicines, healthcare products for ladies, kids, and senior citizens">
+    <title>Products - Sushant Medico | Birgunj Medicine Supply</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -97,6 +97,11 @@
             border: 2px solid var(--primary-color);
         }
         
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: none;
+        }
+        
         /* Navigation Drawer */
         .nav-drawer {
             position: fixed;
@@ -123,14 +128,6 @@
             display: flex;
             align-items: center;
             gap: 15px;
-        }
-        
-        .drawer-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary-color);
         }
         
         .drawer-close {
@@ -199,26 +196,6 @@
         .overlay.active {
             opacity: 1;
             visibility: visible;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                        url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
-            color: white;
-            text-align: center;
-            padding: 120px 0;
-        }
-        
-        .hero .section-title {
-            color: white;
-        }
-        
-        .hero .lead {
-            font-size: 1.5rem;
-            font-weight: 300;
-            max-width: 800px;
-            margin: 0 auto 30px;
         }
         
         /* Buttons */
@@ -299,81 +276,121 @@
             margin-right: auto;
         }
         
-        /* Services Section */
-        .services {
-            background-color: var(--light-color);
+        /* Product Page Specific Styles */
+        .product-header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+            margin-bottom: 40px;
         }
         
-        .service-card {
-            text-align: center;
-            padding: 40px 30px;
-            background-color: white;
+        .product-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .product-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .product-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .category-card {
+            background: white;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
+            overflow: hidden;
             transition: var(--transition);
         }
         
-        .service-card:hover {
-            transform: translateY(-10px);
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            transition: var(--transition);
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            background-color: var(--dark-color);
+        .category-header {
+            background-color: var(--primary-color);
             color: white;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
         
-        .testimonial-card {
+        .category-body {
+            padding: 20px;
+        }
+        
+        .product-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .product-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .product-name {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+        
+        .product-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .demand-form {
+            background-color: var(--light-color);
+            padding: 60px 0;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .qr-section {
+            text-align: center;
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .qr-container {
+            display: inline-block;
             padding: 30px;
-            background-color: rgba(255,255,255,0.1);
+            background: var(--light-color);
             border-radius: var(--border-radius);
         }
         
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 20px;
-            position: relative;
-            padding-left: 40px;
-        }
-        
-        .testimonial-text i {
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-size: 2rem;
-            color: var(--primary-color);
-            opacity: 0.3;
-        }
-        
-        .testimonial-author {
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            background: #eee;
+            margin: 0 auto 20px;
             display: flex;
             align-items: center;
+            justify-content: center;
+            color: var(--text-light);
         }
         
-        .author-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 15px;
-            border: 2px solid var(--primary-color);
-        }
-        
-        /* Doctor Appointment */
-        .appointment-form {
-            background: white;
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-        
+        /* Form Styles */
         .form-group {
             margin-bottom: 20px;
         }
@@ -401,26 +418,9 @@
             box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
         }
         
-        /* Newsletter */
-        .newsletter {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 60px 0;
-        }
-        
-        .newsletter-form {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .newsletter-form input {
-            flex-grow: 1;
-            padding: 12px;
-            border: none;
-            border-radius: var(--border-radius);
+        textarea {
+            resize: vertical;
+            min-height: 120px;
         }
         
         /* Footer */
@@ -566,217 +566,14 @@
             flex: 1;
         }
         
-        /* Order Form Styles */
-        .order-now-btn {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 15px;
-        }
-        
-        .order-now-btn:hover {
-            background-color: #27ae60;
-            transform: translateY(-3px);
-        }
-        
-        .order-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        
-        .order-content {
-            background: white;
-            padding: 30px;
-            border-radius: var(--border-radius);
-            max-width: 600px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-        
-        .close-order-form {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-light);
-        }
-        
-        .file-upload {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            border: 2px dashed #ddd;
-            border-radius: var(--border-radius);
-            margin-bottom: 20px;
-            cursor: pointer;
-        }
-        
-        .file-upload i {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-        
-        .payment-methods {
-            display: flex;
-            gap: 15px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        
-        .payment-method {
-            flex: 1;
-            min-width: 120px;
-            border: 1px solid #ddd;
-            border-radius: var(--border-radius);
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .payment-method.selected {
-            border-color: var(--primary-color);
-            background-color: rgba(52, 152, 219, 0.1);
-        }
-        
-        .payment-method i {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-            color: var(--dark-color);
-        }
-        
-        .submit-order {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .submit-order:hover {
-            background-color: #2980b9;
-        }
-        
-        .order-success {
-            text-align: center;
-            padding: 30px;
-            display: none;
-        }
-        
-        .order-success i {
-            font-size: 3rem;
-            color: var(--secondary-color);
-            margin-bottom: 20px;
-        }
-        
-        /* Product Grid */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .product-card {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .product-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .product-body {
-            padding: 20px;
-        }
-        
-        .product-title {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-        
-        .product-category {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-        
-        .product-price {
-            margin: 15px 0;
-        }
-        
-        .current-price {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-        
-        .original-price {
-            font-size: 1rem;
-            text-decoration: line-through;
-            color: var(--text-light);
-            margin-left: 8px;
-        }
-        
-        .product-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: var(--danger-color);
-            color: white;
-            padding: 5px 10px;
-            border-radius: var(--border-radius);
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-        
         /* Mobile Styles */
         @media (max-width: 768px) {
             .section {
                 padding: 60px 0;
             }
             
-            .hero {
-                padding: 80px 0;
+            .product-header {
+                padding: 80px 20px;
             }
             
             .btn-group {
@@ -792,26 +589,54 @@
                 width: 280px;
             }
             
-            .newsletter-form {
-                flex-direction: column;
+            .form-container {
+                padding: 30px 20px;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none;
             }
             
-            .payment-methods {
-                flex-direction: column;
+            .desktop-nav {
+                display: flex;
+                align-items: center;
             }
             
-            .payment-method {
-                width: 100%;
+            .desktop-nav ul {
+                display: flex;
+                list-style: none;
+                gap: 20px;
+            }
+            
+            .desktop-nav a {
+                text-decoration: none;
+                color: var(--dark-color);
+                font-weight: 500;
+                transition: var(--transition);
+                padding: 8px 12px;
+                border-radius: var(--border-radius);
+            }
+            
+            .desktop-nav a:hover {
+                color: var(--primary-color);
+                background-color: rgba(52, 152, 219, 0.1);
+            }
+            
+            .desktop-nav a.active {
+                color: var(--primary-color);
+                font-weight: 600;
+            }
+            
+            .nav-drawer {
+                display: none;
             }
         }
         
         @media (max-width: 576px) {
             .section-title {
                 font-size: 1.8rem;
-            }
-            
-            .hero .lead {
-                font-size: 1.2rem;
             }
         }
     </style>
@@ -825,21 +650,26 @@
                 <span>Sushant Medico</span>
             </a>
             
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html" class="active">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Menu Toggle -->
             <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Avatar" class="user-avatar">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
 
-    <!-- Navigation Drawer -->
+    <!-- Mobile Navigation Drawer -->
     <div class="nav-drawer" id="navDrawer">
         <div class="drawer-header">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Avatar" class="drawer-avatar">
-            <div>
-                <h3>Welcome</h3>
-                <p>User Name</p>
-            </div>
             <button class="drawer-close" id="drawerClose" aria-label="Close menu">
                 <i class="fas fa-times"></i>
             </button>
@@ -847,7 +677,7 @@
         
         <ul class="nav-links">
             <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="products.html"><i class="fas fa-pills"></i> Products</a></li>
+            <li><a href="products.html" class="active"><i class="fas fa-pills"></i> Products</a></li>
             <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
             <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
         </ul>
@@ -861,300 +691,240 @@
     <div class="overlay" id="overlay"></div>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero section">
+        <!-- Product Header Section -->
+        <section class="product-header">
             <div class="container">
-                <h1 class="section-title">Your Health, Our Priority in Birgunj</h1>
-                <p class="lead">Get all your medical needs delivered quickly to your doorstep. Quality medicines, healthcare products, and doctor consultations - all in one trusted place.</p>
-                <div class="btn-group">
-                    <a href="#products" class="btn">Shop Medicines</a>
-                    <a href="#doctor-appointment" class="btn btn-outline">Book Doctor</a>
-                </div>
+                <h1>Our Medicine Products</h1>
+                <p>Trusted Medicine Supply for All Ages in Birgunj</p>
+                <p><i class="fas fa-phone"></i> +977 XXXXXXXXX | <i class="fas fa-map-marker-alt"></i> Birgunj, Nepal</p>
             </div>
         </section>
 
-        <!-- Services Section -->
-        <section class="section services">
+        <!-- Product Categories -->
+        <section class="section">
             <div class="container">
-                <h2 class="section-title">Our Services</h2>
-                <div class="grid">
-                    <div class="service-card">
-                        <i class="fas fa-truck-fast service-icon"></i>
-                        <h3>Fast Delivery</h3>
-                        <p>Quick delivery within Birgunj, often within 2 hours</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-certificate service-icon"></i>
-                        <h3>Genuine Products</h3>
-                        <p>100% authentic medicines with proper storage</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-headset service-icon"></i>
-                        <h3>24/7 Support</h3>
-                        <p>Emergency support available round the clock</p>
-                    </div>
-                    <div class="service-card">
-                        <i class="fas fa-user-doctor service-icon"></i>
-                        <h3>Doctor Consultation</h3>
-                        <p>Book appointments with trusted doctors</p>
-                        <a href="#doctor-appointment" class="btn btn-secondary" style="margin-top: 15px;">Book Now</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Products Section -->
-        <section class="section" id="products">
-            <div class="container">
-                <h2 class="section-title">Our Products</h2>
-                <p class="section-subtitle">Browse our range of quality medicines and healthcare products</p>
-                
-                <div class="product-grid">
-                    <!-- Product 1 -->
-                    <div class="product-card">
-                        <span class="product-badge">10% OFF</span>
-                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae" alt="Paracetamol 500mg" class="product-img" loading="lazy">
-                        <div class="product-body">
-                            <h3 class="product-title">Paracetamol 500mg</h3>
-                            <p class="product-category">Pain Relief</p>
-                            <div class="product-price">
-                                <span class="current-price">Rs. 45</span>
-                                <span class="original-price">Rs. 50</span>
+                <h2 class="section-title">Medicine Categories</h2>
+                <div class="product-categories">
+                    <!-- Ladies' Health Essentials -->
+                    <div class="category-card">
+                        <div class="category-header">
+                            <i class="fas fa-female"></i> Ladies' Health Essentials
+                        </div>
+                        <div class="category-body">
+                            <div class="product-item">
+                                <div class="product-name">Iron & Folic Acid Tablets</div>
+                                <div class="product-desc">Essential for women's health, especially during pregnancy</div>
                             </div>
-                            <button class="order-now-btn" data-product="Paracetamol 500mg" data-price="45">
-                                <i class="fas fa-shopping-bag"></i> Order Now
-                            </button>
+                            <div class="product-item">
+                                <div class="product-name">Calcium + Vitamin D</div>
+                                <div class="product-desc">For bone health and osteoporosis prevention</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-name">Feminine Hygiene Products</div>
+                                <div class="product-desc">Sanitary pads and intimate care solutions</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-name">Prenatal Vitamins</div>
+                                <div class="product-desc">Special formulations for expecting mothers</div>
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Product 2 -->
-                    <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1558645836-e44122a743ee" alt="Vitamin C" class="product-img" loading="lazy">
-                        <div class="product-body">
-                            <h3 class="product-title">Vitamin C 500mg</h3>
-                            <p class="product-category">Vitamins</p>
-                            <div class="product-price">
-                                <span class="current-price">Rs. 120</span>
+                    <!-- Kids' Health Essentials -->
+                    <div class="category-card">
+                        <div class="category-header">
+                            <i class="fas fa-baby"></i> Kids' Health Essentials
+                        </div>
+                        <div class="category-body">
+                            <div class="product-item">
+                                <div class="product-name">Pediatric Paracetamol</div>
+                                <div class="product-desc">Fever reducer in child-friendly formulations</div>
                             </div>
-                            <button class="order-now-btn" data-product="Vitamin C 500mg" data-price="120">
-                                <i class="fas fa-shopping-bag"></i> Order Now
-                            </button>
+                            <div class="product-item">
+                                <div class="product-name">ORS for Children</div>
+                                <div class="product-desc">Electrolyte solutions for dehydration</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-name">Vitamin Syrups</div>
+                                <div class="product-desc">Essential vitamins in tasty flavors</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-name">Diaper Rash Cream</div>
+                                <div class="product-desc">Gentle protection for baby's delicate skin</div>
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Product 3 -->
-                    <div class="product-card">
-                        <span class="product-badge">15% OFF</span>
-                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea" alt="Hand Sanitizer" class="product-img" loading="lazy">
-                        <div class="product-body">
-                            <h3 class="product-title">Hand Sanitizer</h3>
-                            <p class="product-category">Hygiene</p>
-                            <div class="product-price">
-                                <span class="current-price">Rs. 170</span>
-                                <span class="original-price">Rs. 200</span>
+                    <!-- Senior Citizens' Care -->
+                    <div class="category-card">
+                        <div class="category-header">
+                            <i class="fas fa-wheelchair"></i> Senior Citizens' Care
+                        </div>
+                        <div class="category-body">
+                            <div class="product-item">
+                                <div class="product-name">Joint Pain Relief</div>
+                                <div class="product-desc">Tablets and topical creams for arthritis</div>
                             </div>
-                            <button class="order-now-btn" data-product="Hand Sanitizer" data-price="170">
-                                <i class="fas fa-shopping-bag"></i> Order Now
-                            </button>
+                            <div class="product-item">
+                                <div class="product-name">Blood Pressure Medications</div>
+                                <div class="product-desc">Commonly prescribed hypertension drugs</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-name">Diabetic Care</div>
+                                <div class="product-desc">Supplies for diabetes management</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-name">Digestive Aids</div>
+                                <div class="product-desc">For better digestion and gut health</div>
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Product 4 -->
-                    <div class="product-card">
-                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88" alt="First Aid Kit" class="product-img" loading="lazy">
-                        <div class="product-body">
-                            <h3 class="product-title">First Aid Kit</h3>
-                            <p class="product-category">Medical Supplies</p>
-                            <div class="product-price">
-                                <span class="current-price">Rs. 850</span>
+                    <!-- Common Medicines -->
+                    <div class="category-card">
+                        <div class="category-header">
+                            <i class="fas fa-pills"></i> Common Medicines
+                        </div>
+                        <div class="category-body">
+                            <div class="product-item">
+                                <div class="product-name">Paracetamol</div>
+                                <div class="product-desc">For fever and pain relief</div>
                             </div>
-                            <button class="order-now-btn" data-product="First Aid Kit" data-price="850">
-                                <i class="fas fa-shopping-bag"></i> Order Now
-                            </button>
+                            <div class="product-item">
+                                <div class="product-name">Antacids</div>
+                                <div class="product-desc">For acidity and heartburn relief</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-name">Cough Syrups</div>
+                                <div class="product-desc">For dry and wet cough variants</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-name">Pain Relief Creams</div>
+                                <div class="product-desc">Topical applications for muscle pain</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Clinic & Hospital Supplies -->
+                    <div class="category-card">
+                        <div class="category-header">
+                            <i class="fas fa-hospital"></i> Clinic & Hospital Supplies
+                        </div>
+                        <div class="category-body">
+                            <div class="product-item">
+                                <div class="product-name">First Aid Kits</div>
+                                <div class="product-desc">Complete kits for emergencies</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-name">Disposable Syringes</div>
+                                <div class="product-desc">Various sizes available</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-name">Hand Sanitizers</div>
+                                <div class="product-desc">Hospital-grade disinfectants</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-name">Bulk Medicine Packs</div>
+                                <div class="product-desc">Economical packs for institutions</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Baby Care -->
+                    <div class="category-card">
+                        <div class="category-header">
+                            <i class="fas fa-baby-carriage"></i> Baby Care
+                        </div>
+                        <div class="category-body">
+                            <div class="product-item">
+                                <div class="product-name">Colic Drops</div>
+                                <div class="product-desc">For infant gas and colic relief</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-name">Teething Gel</div>
+                                <div class="product-desc">Soothes sore gums during teething</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-name">Baby Thermometer</div>
+                                <div class="product-desc">Digital and infrared options</div>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-name">Nasal Aspirators</div>
+                                <div class="product-desc">For clearing baby's stuffy nose</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Testimonials -->
-        <section class="section testimonials">
+        <!-- Demand Form Section -->
+        <section class="demand-form">
             <div class="container">
-                <h2 class="section-title">What Our Customers Say</h2>
-                <div class="grid">
-                    <div class="testimonial-card">
-                        <div class="testimonial-text">
-                            <i class="fas fa-quote-left"></i>
-                            <p>Sushant Medico has been my go-to pharmacy for years. Their delivery is always prompt and their staff is knowledgeable about medicines.</p>
+                <div class="form-container">
+                    <h2 class="section-title">Tell Us Your Requirements</h2>
+                    <form id="productDemandForm">
+                        <div class="form-group">
+                            <label for="customerName">Your Name</label>
+                            <input type="text" id="customerName" name="customerName" required>
                         </div>
-                        <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ramesh Kumar" class="author-avatar" loading="lazy">
-                            <div>
-                                <h4>Ramesh Kumar</h4>
-                                <p>Regular Customer</p>
-                            </div>
+                        
+                        <div class="form-group">
+                            <label for="customerPhone">Contact Number</label>
+                            <input type="tel" id="customerPhone" name="customerPhone" required>
                         </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-text">
-                            <i class="fas fa-quote-left"></i>
-                            <p>I appreciate their genuine medicines and professional service. They helped me find alternatives when my regular medicine was out of stock.</p>
+                        
+                        <div class="form-group">
+                            <label for="customerLocation">Location (Area/Tole, Birgunj)</label>
+                            <input type="text" id="customerLocation" name="customerLocation" required>
                         </div>
-                        <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sunita Sharma" class="author-avatar" loading="lazy">
-                            <div>
-                                <h4>Sunita Sharma</h4>
-                                <p>Senior Citizen</p>
-                            </div>
+                        
+                        <div class="form-group">
+                            <label for="customerType">Customer Type</label>
+                            <select id="customerType" name="customerType" required>
+                                <option value="">Select Customer Type</option>
+                                <option value="individual">Individual</option>
+                                <option value="hospital">Hospital</option>
+                                <option value="clinic">Clinic</option>
+                                <option value="pharmacy">Pharmacy</option>
+                            </select>
                         </div>
-                    </div>
+                        
+                        <div class="form-group">
+                            <label for="deliveryMode">Preferred Delivery Mode</label>
+                            <select id="deliveryMode" name="deliveryMode" required>
+                                <option value="">Select Delivery Mode</option>
+                                <option value="pickup">Pickup</option>
+                                <option value="home_delivery">Home Delivery</option>
+                                <option value="bulk_delivery">Bulk Delivery</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="requirements">Medicine Requirements (List names and quantities)</label>
+                            <textarea id="requirements" name="requirements" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-secondary">Submit Requirements</button>
+                    </form>
                 </div>
             </div>
         </section>
 
-        <!-- Doctor Appointment -->
-        <section class="section" id="doctor-appointment">
+        <!-- QR Code Section -->
+        <section class="qr-section">
             <div class="container">
-                <h2 class="section-title">Book a Doctor Appointment</h2>
-                <div class="two-column">
-                    <div class="column">
-                        <p>Consult with our panel of experienced doctors from the comfort of your home or visit our clinic.</p>
-                        <ul style="list-style: none; margin: 20px 0;">
-                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
-                                <i class="fas fa-check-circle" style="color: var(--secondary-color); margin-right: 10px; margin-top: 3px;"></i>
-                                Experienced doctors across specialties
-                            </li>
-                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
-                                <i class="fas fa-check-circle" style="color: var(--secondary-color); margin-right: 10px; margin-top: 3px;"></i>
-                                Video and in-person consultations
-                            </li>
-                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
-                                <i class="fas fa-check-circle" style="color: var(--secondary-color); margin-right: 10px; margin-top: 3px;"></i>
-                                Prescription delivered with medicines
-                            </li>
-                        </ul>
+                <h2 class="section-title">Secure Payment Option</h2>
+                <div class="qr-container">
+                    <div class="qr-code">
+                        [Your QR Code Here]
                     </div>
-                    <div class="column">
-                        <form class="appointment-form">
-                            <div class="form-group">
-                                <label for="name">Full Name</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="doctor">Preferred Doctor/Specialty</label>
-                                <select id="doctor" name="doctor" required>
-                                    <option value="">Select Doctor/Specialty</option>
-                                    <option value="general">General Physician</option>
-                                    <option value="pediatric">Pediatrician</option>
-                                    <option value="gynecologist">Gynecologist</option>
-                                    <option value="cardiologist">Cardiologist</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-secondary">Book Appointment</button>
-                        </form>
-                    </div>
+                    <p>Make an advance payment securely to confirm your order!</p>
+                    <p>Scan this QR code with your mobile banking app</p>
                 </div>
-            </div>
-        </section>
-
-        <!-- Newsletter -->
-        <section class="newsletter section">
-            <div class="container">
-                <h2 class="section-title">Stay Updated with Health Tips & Offers</h2>
-                <p class="section-subtitle">Subscribe to our newsletter for seasonal health advice, new arrivals, and exclusive discounts.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Enter your email" required>
-                    <button type="submit" class="btn btn-secondary">Subscribe</button>
-                </form>
             </div>
         </section>
     </main>
-
-    <!-- Order Form Modal -->
-    <div class="order-modal" id="orderModal">
-        <div class="order-content">
-            <button class="close-order-form" id="closeOrderForm">&times;</button>
-            <div id="orderForm">
-                <h3 style="margin-bottom: 20px;">Place Your Order</h3>
-                
-                <div class="form-group">
-                    <label for="productName">Product</label>
-                    <input type="text" id="productName" readonly>
-                </div>
-                
-                <div class="form-group">
-                    <label for="productPrice">Price</label>
-                    <input type="text" id="productPrice" readonly>
-                </div>
-                
-                <div class="form-group">
-                    <label for="customerName">Full Name *</label>
-                    <input type="text" id="customerName" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="customerPhone">Phone Number *</label>
-                    <input type="tel" id="customerPhone" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="customerEmail">Email</label>
-                    <input type="email" id="customerEmail">
-                </div>
-                
-                <div class="form-group">
-                    <label for="customerAddress">Delivery Address *</label>
-                    <textarea id="customerAddress" required></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>Upload Prescription (if required)</label>
-                    <div class="file-upload" id="fileUploadArea">
-                        <i class="fas fa-file-upload"></i>
-                        <span>Click to upload or drag and drop</span>
-                        <input type="file" id="prescriptionUpload" accept="image/*,.pdf" style="display: none;">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Payment Method *</label>
-                    <div class="payment-methods">
-                        <div class="payment-method" data-method="cash">
-                            <i class="fas fa-money-bill-wave"></i>
-                            <div>Cash on Delivery</div>
-                        </div>
-                        <div class="payment-method" data-method="khalti">
-                            <i class="fas fa-mobile-alt"></i>
-                            <div>Khalti</div>
-                        </div>
-                        <div class="payment-method" data-method="esewa">
-                            <i class="fas fa-wallet"></i>
-                            <div>eSewa</div>
-                        </div>
-                    </div>
-                    <input type="hidden" id="selectedPaymentMethod" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="orderNotes">Additional Notes</label>
-                                        <textarea id="orderNotes" placeholder="Any special instructions..."></textarea>
-                </div>
-                
-                <button type="button" class="submit-order" id="submitOrder">Place Order</button>
-            </div>
-            
-            <div class="order-success" id="orderSuccess">
-                <i class="fas fa-check-circle"></i>
-                <h3>Order Placed Successfully!</h3>
-                <p>Thank you for your order. We'll contact you shortly to confirm the details.</p>
-                <button class="btn btn-secondary" id="closeSuccessModal">Close</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer>
@@ -1195,13 +965,16 @@
             </div>
         </div>
     </footer>
-    
+
     <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
     <script>
+        // Current Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
         // Navigation Drawer Toggle
         const menuToggle = document.getElementById('menuToggle');
         const navDrawer = document.getElementById('navDrawer');
@@ -1226,139 +999,60 @@
             document.body.classList.remove('drawer-open');
         });
         
-        // Order Modal Functionality
-        const orderButtons = document.querySelectorAll('.order-now-btn');
-        const orderModal = document.getElementById('orderModal');
-        const closeOrderForm = document.getElementById('closeOrderForm');
-        const closeSuccessModal = document.getElementById('closeSuccessModal');
-        const orderForm = document.getElementById('orderForm');
-        const orderSuccess = document.getElementById('orderSuccess');
-        const submitOrder = document.getElementById('submitOrder');
-        const fileUploadArea = document.getElementById('fileUploadArea');
-        const prescriptionUpload = document.getElementById('prescriptionUpload');
-        const paymentMethods = document.querySelectorAll('.payment-method');
-        const selectedPaymentMethod = document.getElementById('selectedPaymentMethod');
-        
-        orderButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const productName = button.getAttribute('data-product');
-                const productPrice = button.getAttribute('data-price');
-                
-                document.getElementById('productName').value = productName;
-                document.getElementById('productPrice').value = 'Rs. ' + productPrice;
-                
-                orderModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            });
-        });
-        
-        closeOrderForm.addEventListener('click', () => {
-            orderModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-        
-        closeSuccessModal.addEventListener('click', () => {
-            orderModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            orderForm.style.display = 'block';
-            orderSuccess.style.display = 'none';
-        });
-        
-        submitOrder.addEventListener('click', () => {
-            // Simple validation
-            const requiredFields = ['customerName', 'customerPhone', 'customerAddress'];
-            let isValid = true;
-            
-            requiredFields.forEach(field => {
-                const element = document.getElementById(field);
-                if (!element.value.trim()) {
-                    element.style.borderColor = 'var(--danger-color)';
-                    isValid = false;
-                } else {
-                    element.style.borderColor = '#ddd';
-                }
-            });
-            
-            if (!selectedPaymentMethod.value) {
-                alert('Please select a payment method');
-                isValid = false;
-            }
-            
-            if (isValid) {
-                orderForm.style.display = 'none';
-                orderSuccess.style.display = 'block';
-            }
-        });
-        
-        fileUploadArea.addEventListener('click', () => {
-            prescriptionUpload.click();
-        });
-        
-        prescriptionUpload.addEventListener('change', () => {
-            if (prescriptionUpload.files.length > 0) {
-                fileUploadArea.innerHTML = `
-                    <i class="fas fa-file-alt"></i>
-                    <span>${prescriptionUpload.files[0].name}</span>
-                `;
-            }
-        });
-        
-        paymentMethods.forEach(method => {
-            method.addEventListener('click', () => {
-                paymentMethods.forEach(m => m.classList.remove('selected'));
-                method.classList.add('selected');
-                selectedPaymentMethod.value = method.getAttribute('data-method');
-            });
-        });
-        
         // Back to Top Button
-        const backToTop = document.getElementById('backToTop');
-        
+        const backToTopBtn = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('visible');
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
             } else {
-                backToTop.classList.remove('visible');
+                backToTopBtn.classList.remove('visible');
             }
         });
         
-        backToTop.addEventListener('click', () => {
+        backToTopBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
         
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-        document.getElementById('year').textContent = new Date().getFullYear();
-        
-        // Close modal when clicking outside
-        orderModal.addEventListener('click', (e) => {
-            if (e.target === orderModal) {
-                orderModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
+        // Form Submission
+        document.getElementById('productDemandForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            
+            // Show success message
+            alert(`Thank you ${name}! We've received your medicine requirements. We'll contact you shortly at ${phone} to confirm your order.`);
+            
+            // Reset form
+            this.reset();
         });
         
-        // Doctor Appointment Form Submission
-        const appointmentForm = document.querySelector('.appointment-form');
-        if (appointmentForm) {
-            appointmentForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                alert('Appointment request submitted! We will call you shortly to confirm.');
-                appointmentForm.reset();
+        // Lazy Loading for Images
+        if ('loading' in HTMLImageElement.prototype) {
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            lazyImages.forEach(img => {
+                img.src = img.dataset.src;
             });
-        }
-        
-        // Newsletter Form Submission
-        const newsletterForm = document.querySelector('.newsletter-form');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                alert('Thank you for subscribing to our newsletter!');
-                newsletterForm.reset();
-            });
+        } else {
+            const lazyLoad = target => {
+                const io = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            observer.disconnect();
+                        }
+                    });
+                });
+                io.observe(target);
+            };
+            
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            lazyImages.forEach(lazyLoad);
         }
     </script>
 </body>
